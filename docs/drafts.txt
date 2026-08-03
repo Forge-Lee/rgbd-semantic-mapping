@@ -90,3 +90,26 @@
                 break
 
     return line_splitted[0], line_splitted[1]
+
+    
+def load_rgbd_pair(
+    dataset_root: Path,
+    pair: RGBDPair,
+) -> tuple[np.ndarray, np.ndarray]:
+    rgb = iio.imread(dataset_root / pair.rgb_path)
+    depth_raw = iio.imread(dataset_root / pair.depth_path)
+    depth_meters = depth_raw.astype(np.float32) / 5000.0
+
+    return rgb, depth_meters
+
+    
+def find_nearest_entry(
+    query_timestamp: float,
+    candidates: list[tuple[float, Path]],
+) -> tuple[float, Path]:
+    """Find the candidate whose timestamp is closest to the query."""
+    nearest_entry = min(
+        candidates,
+        key=lambda entry: abs(entry[0] - query_timestamp),
+    )
+    return nearest_entry
