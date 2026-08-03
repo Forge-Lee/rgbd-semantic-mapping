@@ -113,3 +113,27 @@ def find_nearest_entry(
         key=lambda entry: abs(entry[0] - query_timestamp),
     )
     return nearest_entry
+
+
+
+    # sanity checks
+    print("Points:", points.shape)
+    print("Colors:", colors.shape)
+
+    print(
+        "X range:",
+        points[:, 0].min(),
+        points[:, 0].max(),
+    )
+
+    print(
+        "Y range:",
+        points[:, 1].min(),
+        points[:, 1].max(),
+    )
+
+    print(
+        "Z range:",
+        points[:, 2].min(),
+        points[:, 2].max(),
+    )    
