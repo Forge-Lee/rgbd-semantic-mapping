@@ -1,7 +1,5 @@
 from pathlib import Path
 
-import imageio.v3 as iio
-import matplotlib.pyplot as plt
 import numpy as np
 
 # schemas
@@ -262,6 +260,8 @@ def main() -> None:
         f"Max pose difference: "
         f"{pose_differences.max():.6f} s"
     )
+
+    return records
 
 
 if __name__ == "__main__":
