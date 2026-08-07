@@ -69,8 +69,7 @@ class SemanticVoxelMap:
 
         number_of_points = len(points)
 
-        if number_of_points == 0:
-            raise ValueError("Cannot update with an empty point cloud.")
+        
 
         if rgb_colors.shape != points.shape:
             raise ValueError(
@@ -89,6 +88,9 @@ class SemanticVoxelMap:
                 f"Expected confidences shape ({len(points)},), "
                 f"got {confidences.shape}"
             )
+
+        if number_of_points == 0:
+            return
 
         if not np.all(np.isfinite(points)):
             raise ValueError("Points contain NaN or infinity.")
