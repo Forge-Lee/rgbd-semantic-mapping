@@ -10,7 +10,7 @@ from src.rgbd_mapping.geometry.transforms import camera_pose_to_matrix, transfor
 from src.rgbd_mapping.semantics.palette import create_palette
 from src.rgbd_mapping.mapping.semantic_voxel_map import SemanticVoxelMap
 
-POINTCLOUD_OUTPUT_DIR = Path("outputs/day6/incre_test")
+POINTCLOUD_OUTPUT_DIR = Path("outputs/day7/incre_test")
 DATASET_ROOT = Path("data/raw/rgbd_dataset_freiburg1_xyz")
 
 def save_coarse_class_layers(
@@ -86,8 +86,10 @@ def visualize():
         parents=True,
         exist_ok=True,
     )
+    snapshot_dir = Path("outputs/demo_run/snapshots")
+    run_dir = Path("outputs/demo_run")
 
-    selected_records = records[100:151:step]
+    selected_records = records[::step]
 
     segmenter = SemanticSegmenter(device="cpu")
     semantic_map = SemanticVoxelMap(voxel_size=size)
@@ -142,32 +144,79 @@ def visualize():
             f"{len(semantic_map)} voxels"
         )
 
-        # if frame_index % 5 == 0:
-        snapshot = semantic_map.export()
+        if frame_index % 5 == 0:
+            snapshot = semantic_map.export()
 
-        semantic_colors = (
-            palette[snapshot.labels]
-            .astype(np.float32)
-            / 255.0
-        )
+            np.savez_compressed(
+                snapshot_dir / f"snapshot_{frame_index:04d}.npz",
+                points=snapshot.points,
+                rgb_colors=snapshot.rgb_colors,
+                labels=snapshot.labels,
+                semantic_agreement=snapshot.semantic_agreement,
+                mean_model_confidence=snapshot.mean_model_confidence,
+                observation_counts=snapshot.observation_counts,
+                current_points_world=points_world,
+            )
 
-        save_colored_ply(
-            output_path=(
-                POINTCLOUD_OUTPUT_DIR
-                / f"semantic_{frame_index:04d}.ply"
-            ),
-            points=snapshot.points,
-            colors=semantic_colors,
-        )
+            rgb_output_path = (
+                run_dir
+                / "rgb"
+                / f"rgb_{frame_index:04d}.png"
+            )
 
-        save_colored_ply(
-            output_path=(
-                POINTCLOUD_OUTPUT_DIR
-                / f"rgb_{frame_index:04d}.ply"
-            ),
-            points=snapshot.points,
-            colors=snapshot.rgb_colors,
-        )
+            iio.imwrite(
+                rgb_output_path,
+                rgb,
+            )
+
+            semantic_output_path = (
+                run_dir
+                / "semantic_2d"
+                / f"semantic_{frame_index:04d}.png"
+            )
+
+            semantic_colors = (
+                palette[prediction.labels]
+                * 255.0
+            ).astype(np.uint8)
+
+            alpha = 0.45
+
+            overlay = (
+                (1.0 - alpha)
+                * rgb.astype(np.float32)
+                + alpha
+                * semantic_colors.astype(np.float32)
+            )
+
+            overlay = np.clip(
+                overlay,
+                0,
+                255,
+            ).astype(np.uint8)
+
+            iio.imwrite(
+                semantic_output_path,
+                overlay,
+            )
+
+            # save_colored_ply(
+            #     output_path=(
+            #         POINTCLOUD_OUTPUT_DIR
+            #         / f"semantic_{frame_index:04d}.ply"
+            #     ),
+            #     points=snapshot.points,
+            #     colors=semantic_colors,
+            # )
+
+            # save_colored_ply(
+            #     output_path=(
+            #         POINTCLOUD_OUTPUT_DIR
+            #         / f"rgb_{frame_index:04d}.ply"
+            #     ),
+            #     points=snapshot.points,
+            #     colors=snapshot.rgb_colors,
+            # )
         frame_index += 1
 
 
