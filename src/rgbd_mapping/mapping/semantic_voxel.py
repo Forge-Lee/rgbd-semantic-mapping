@@ -119,7 +119,7 @@ def semantic_voxel_fusion(
 
     for (point, color, label, confidence, voxel_index,) in zip(points, rgb_colors, labels, confidences, voxel_indices,):
 
-        key = (int(voxel_index[0]), int(voxel_index[1]), int(voxel_index[2])), 
+        key = (int(voxel_index[0]), int(voxel_index[1]), int(voxel_index[2]))
 
         if key not in voxel_data:
             voxel_data[key] = {
@@ -144,14 +144,12 @@ def semantic_voxel_fusion(
         label_id = int(label)
         confidence_value = float(confidence)
 
-        label_scores: dict[int, float] = (
-            accumulator["label_scores"]
-        )
+        label_scores: dict[int, float] = (accumulator["label_scores"])
 
         try:
             # if the id has been recorded in label_scores
             label_scores[label_id] += confidence_value
-        except:
+        except KeyError:
             # if this is the first time to add the id into label_scores
             label_scores[label_id] = confidence_value
 

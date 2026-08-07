@@ -5,6 +5,7 @@ from scripts.inspect_raw_images import DATASET_ROOT
 from src.rgbd_mapping.geometry.backprojection import backproject_rgbd, backproject_semantic_rgbd
 from src.rgbd_mapping.geometry.transforms import camera_pose_to_matrix, transform_points
 from src.rgbd_mapping.semantics.inference import SemanticSegmenter
+from src.rgbd_mapping.mapping.remapping import CoarseLabelRemapper
 
 def build_world_pointcloud(
     records,
@@ -76,6 +77,7 @@ def build_world_pointcloud(
 def build_world_semantic_pointcloud(
     records,
     segmenter: SemanticSegmenter,
+    # remapper: CoarseLabelRemapper,
     dataset_root = DATASET_ROOT,
     fx: float = 525.0, # official intrinsic parameter
     fy: float = 525.0,
@@ -91,9 +93,9 @@ def build_world_semantic_pointcloud(
     all_colors = []
     all_labels = []
     all_confidences = []
+    # all_fine_labels = []
 
     selected_records = records[::frame_step]
-    # segmenter = SemanticSegmenter()
 
     for record in selected_records:
         pair = record.rgbd_pair
@@ -120,7 +122,10 @@ def build_world_semantic_pointcloud(
             stride= pixel_stride,
         )
 
-        
+        # remap the label to coarse version to imporve the semantic performance
+        # point_coarse_labels = remapper.remap(
+        #     point_labels
+        # )
 
         # transform to world frame
         # transform matrix from cam frame to world frame
@@ -139,6 +144,7 @@ def build_world_semantic_pointcloud(
         all_colors.append(colors)
         all_labels.append(point_labels)
         all_confidences.append(point_confidence)
+        # all_fine_labels.append(point_labels)
 
     # merge the selected points
     merged_points = np.concatenate(
@@ -160,6 +166,11 @@ def build_world_semantic_pointcloud(
         all_confidences,
         axis=0,
     )
+
+    # merged_fine_labels = np.concatenate(
+    #         all_fine_labels,
+    #         axis=0,
+    #     )
 
     return (
         merged_points,

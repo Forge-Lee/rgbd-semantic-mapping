@@ -1,17 +1,71 @@
 from pathlib import Path
-import csv
 import time
 import numpy as np
 
 from scripts.inspect_raw_images import main as inspect_main
 from src.rgbd_mapping.geometry.pointcloud_io import save_colored_ply
-from src.rgbd_mapping.geometry.voxel import voxel_downsample
 from src.rgbd_mapping.mapping.multiframe import build_world_semantic_pointcloud
 from src.rgbd_mapping.semantics.inference import SemanticSegmenter
+# from src.rgbd_mapping.mapping.remapping import CoarseLabelRemapper, COARSE_CLASS_NAMES
 from src.rgbd_mapping.semantics.palette import create_palette
 from src.rgbd_mapping.mapping.semantic_voxel import semantic_voxel_fusion
 
 POINTCLOUD_OUTPUT_DIR = Path("outputs/day5")
+
+def save_coarse_class_layers(
+    output_directory: Path,
+    points: np.ndarray,
+    coarse_labels: np.ndarray,
+    coarse_palette: np.ndarray,
+    coarse_class_names: list[str],
+) -> None:
+    # semantic map optimizing codes
+    output_directory.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    for coarse_id, coarse_name in enumerate(
+        coarse_class_names
+    ):
+        class_mask = (
+            coarse_labels == coarse_id
+        )
+
+        point_count = int(
+            np.count_nonzero(class_mask)
+        )
+
+        if point_count == 0:
+            continue
+
+        class_color = (
+            coarse_palette[coarse_id]
+            .astype(np.float32)
+            / 255.0
+        )
+
+        class_colors = np.repeat(
+            class_color[None, :],
+            repeats=point_count,
+            axis=0,
+        )
+
+        output_path = (
+            output_directory
+            / f"{coarse_id:02d}_{coarse_name}.ply"
+        )
+
+        save_colored_ply(
+            output_path=output_path,
+            points=points[class_mask],
+            colors=class_colors,
+        )
+
+        print(
+            f"{coarse_name:24s}: "
+            f"{point_count:8d} voxels"
+        )
 
 def visualize():
     # get one matched frame to test the code validity first
@@ -28,14 +82,17 @@ def visualize():
     )
 
     segmenter = SemanticSegmenter(device="cpu")
+    # remapper = CoarseLabelRemapper(
+    #     fine_id_to_label=segmenter.id_to_label
+    # )
     for step in frame_step:
         for size in voxel_size:
             start_time = time.perf_counter()
             (merged_points, merged_colors, merged_labels, merged_confidences) = build_world_semantic_pointcloud(
                 records=records, 
                 frame_step=step, 
-                segmenter=segmenter
-
+                segmenter=segmenter,
+                # remapper = remapper
             )
             (fused_points, fused_rgb_colors, fused_labels, fused_confidences, observation_counts) = semantic_voxel_fusion(
                 points=merged_points, 
@@ -45,9 +102,7 @@ def visualize():
                 voxel_size=size
             )
             
-            palette = create_palette(
-                        number_of_classes=len(segmenter.id_to_label)
-                    )
+            palette = create_palette(number_of_classes=len(segmenter.id_to_label))
                     
             semantic_colors = (
                 palette[fused_labels]
@@ -55,15 +110,7 @@ def visualize():
                 / 255.0
             )
 
-            # downsampled_points, downsampled_colors = voxel_downsample(
-            #     points= merged_points,
-            #     colors= merged_colors,
-            #     voxel_size=size
-            # )
-
-            build_time_seconds = (
-                time.perf_counter() - start_time
-            )
+            build_time_seconds = (time.perf_counter() - start_time)
 
             output_path = (
                 POINTCLOUD_OUTPUT_DIR
@@ -77,7 +124,7 @@ def visualize():
                 POINTCLOUD_OUTPUT_DIR
                 / (
                     f"map_step_{step}"
-                    f"_voxel_{size:.2f}_semantic.ply"
+                    f"_voxel_{size:.2f}_return_semantic.ply"
                 )
             )
 
@@ -94,6 +141,16 @@ def visualize():
                 points=fused_points,
                 colors=semantic_colors,
             )
+
+            # save_coarse_class_layers(
+            #     output_directory=Path(
+            #         "outputs/semantics/coarse_layers"
+            #     ),
+            #     points=fused_points,
+            #     coarse_labels=fused_labels,
+            #     coarse_palette=palette,
+            #     coarse_class_names=COARSE_CLASS_NAMES,
+            # )
 
             raw_point_count = len(merged_points)
             downsampled_point_count = len(fused_points)
