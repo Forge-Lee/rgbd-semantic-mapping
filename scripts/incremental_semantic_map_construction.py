@@ -10,7 +10,7 @@ from src.rgbd_mapping.geometry.transforms import camera_pose_to_matrix, transfor
 from src.rgbd_mapping.semantics.palette import create_palette
 from src.rgbd_mapping.mapping.semantic_voxel_map import SemanticVoxelMap
 
-POINTCLOUD_OUTPUT_DIR = Path("outputs/day7/incre_test")
+POINTCLOUD_OUTPUT_DIR = Path("outputs/day8/incre_test")
 DATASET_ROOT = Path("data/raw/rgbd_dataset_freiburg1_xyz")
 
 def save_coarse_class_layers(
@@ -217,6 +217,33 @@ def visualize():
             #     points=snapshot.points,
             #     colors=snapshot.rgb_colors,
             # )
+
+        if frame_index % 10 == 0:
+            snapshot = semantic_map.export()
+
+            semantic_colors = (
+                palette[snapshot.labels]
+                .astype(np.float32)
+                / 255.0
+            )
+
+            save_colored_ply(
+                output_path=(
+                    POINTCLOUD_OUTPUT_DIR
+                    / f"semantic_{frame_index:04d}.ply"
+                ),
+                points=snapshot.points,
+                colors=semantic_colors,
+            )
+
+            save_colored_ply(
+                output_path=(
+                    POINTCLOUD_OUTPUT_DIR
+                    / f"rgb_{frame_index:04d}.ply"
+                ),
+                points=snapshot.points,
+                colors=snapshot.rgb_colors,
+            )
         frame_index += 1
 
 

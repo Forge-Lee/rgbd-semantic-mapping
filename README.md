@@ -10,9 +10,9 @@ The current MVP uses synchronized RGB, depth, and camera poses from the TUM RGB-
 
 <!-- TODO: Replace with your final GIF or preview image -->
 
-<!-- <p align="center">
+<p align="center">
   <img src="assets/demo.gif" width="900">
-</p> -->
+</p>
 
 The demo shows the mapping pipeline running incrementally:
 
@@ -47,26 +47,19 @@ The current implementation focuses on **known-pose RGB-D semantic mapping** rath
 ```text
 Timestamped RGB / Depth / Pose
             |
-            v
      Sensor Association
             |
-            v
     RGB Semantic Segmentation
         (SegFormer)
             |
-            v
       RGB-D Backprojection
             |
-            v
      Camera -> World Transform
             |
-            v
    Incremental Voxel Map Update
             |
-            v
  Confidence-Weighted Semantic Fusion
             |
-            v
  Persistent 3D Semantic Map
 ```
 
