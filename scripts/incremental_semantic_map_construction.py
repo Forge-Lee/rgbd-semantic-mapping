@@ -1,6 +1,7 @@
 from pathlib import Path
 import imageio.v3 as iio
 import numpy as np
+import time
 
 from scripts.inspect_raw_images import main as inspect_main
 from src.rgbd_mapping.geometry.pointcloud_io import save_colored_ply
@@ -84,6 +85,8 @@ def visualize():
     cx: float = 319.5
     cy: float = 239.5
 
+    total_update_time = 0.0
+
     POINTCLOUD_OUTPUT_DIR.mkdir(
         parents=True,
         exist_ok=True,
@@ -161,12 +164,18 @@ def visualize():
             frame_observations
         )
 
+        start = time.perf_counter()
+
         semantic_map.update(
             points=points_world,
             rgb_colors=rgb_colors,
             labels=point_labels,
             confidences=point_confidences,
         )
+
+        end = time.perf_counter()
+
+        total_update_time += end - start
 
         print(
             f"Processed frame {frame_index}: "
@@ -182,88 +191,88 @@ def visualize():
             )
         )
 
-        # if frame_index % 5 == 0:
-        #     snapshot = semantic_map.export()
+        if frame_index % 5 == 0:
+            snapshot = semantic_map.export()
 
-        #     np.savez_compressed(
-        #         snapshot_dir / f"snapshot_{frame_index:04d}.npz",
-        #         points=snapshot.points,
-        #         rgb_colors=snapshot.rgb_colors,
-        #         labels=snapshot.labels,
-        #         semantic_agreement=snapshot.semantic_agreement,
-        #         mean_model_confidence=snapshot.mean_model_confidence,
-        #         observation_counts=snapshot.observation_counts,
-        #         current_points_world=points_world,
-        #     )
+            np.savez_compressed(
+                snapshot_dir / f"snapshot_{frame_index:04d}.npz",
+                points=snapshot.points,
+                rgb_colors=snapshot.rgb_colors,
+                labels=snapshot.labels,
+                semantic_agreement=snapshot.semantic_agreement,
+                mean_model_confidence=snapshot.mean_model_confidence,
+                observation_counts=snapshot.observation_counts,
+                current_points_world=points_world,
+            )
 
-        #     rgb_output_path = (
-        #         run_dir
-        #         / "rgb"
-        #         / f"rgb_{frame_index:04d}.png"
-        #     )
+            rgb_output_path = (
+                run_dir
+                / "rgb"
+                / f"rgb_{frame_index:04d}.png"
+            )
 
-        #     iio.imwrite(
-        #         rgb_output_path,
-        #         rgb,
-        #     )
+            iio.imwrite(
+                rgb_output_path,
+                rgb,
+            )
 
-        #     semantic_output_path = (
-        #         run_dir
-        #         / "semantic_2d"
-        #         / f"semantic_{frame_index:04d}.png"
-        #     )
+            semantic_output_path = (
+                run_dir
+                / "semantic_2d"
+                / f"semantic_{frame_index:04d}.png"
+            )
 
-        #     semantic_colors = (
-        #         palette[prediction.labels]
-        #         * 255.0
-        #     ).astype(np.uint8)
+            semantic_colors = (
+                palette[prediction.labels]
+                * 255.0
+            ).astype(np.uint8)
 
-        #     alpha = 0.45
+            alpha = 0.45
 
-        #     overlay = (
-        #         (1.0 - alpha)
-        #         * rgb.astype(np.float32)
-        #         + alpha
-        #         * semantic_colors.astype(np.float32)
-        #     )
+            overlay = (
+                (1.0 - alpha)
+                * rgb.astype(np.float32)
+                + alpha
+                * semantic_colors.astype(np.float32)
+            )
 
-        #     overlay = np.clip(
-        #         overlay,
-        #         0,
-        #         255,
-        #     ).astype(np.uint8)
+            overlay = np.clip(
+                overlay,
+                0,
+                255,
+            ).astype(np.uint8)
 
-        #     iio.imwrite(
-        #         semantic_output_path,
-        #         overlay,
-        #     )
+            iio.imwrite(
+                semantic_output_path,
+                overlay,
+            )
 
-        # if frame_index % 10 == 0:
-        #     snapshot = semantic_map.export()
+        if frame_index % 10 == 0:
+            snapshot = semantic_map.export()
 
-        #     semantic_colors = (
-        #         palette[snapshot.labels]
-        #         .astype(np.float32)
-        #         / 255.0
-        #     )
+            semantic_colors = (
+                palette[snapshot.labels]
+                .astype(np.float32)
+                / 255.0
+            )
 
-        #     save_colored_ply(
-        #         output_path=(
-        #             POINTCLOUD_OUTPUT_DIR
-        #             / f"semantic_{frame_index:04d}.ply"
-        #         ),
-        #         points=snapshot.points,
-        #         colors=semantic_colors,
-        #     )
+            save_colored_ply(
+                output_path=(
+                    POINTCLOUD_OUTPUT_DIR
+                    / f"semantic_{frame_index:04d}.ply"
+                ),
+                points=snapshot.points,
+                colors=semantic_colors,
+            )
 
-        #     save_colored_ply(
-        #         output_path=(
-        #             POINTCLOUD_OUTPUT_DIR
-        #             / f"rgb_{frame_index:04d}.ply"
-        #         ),
-        #         points=snapshot.points,
-        #         colors=snapshot.rgb_colors,
-        #     )
+            save_colored_ply(
+                output_path=(
+                    POINTCLOUD_OUTPUT_DIR
+                    / f"rgb_{frame_index:04d}.ply"
+                ),
+                points=snapshot.points,
+                colors=snapshot.rgb_colors,
+            )
 
     all_observations = np.concatenate(
         parity_observation_batches,
@@ -347,6 +356,12 @@ def visualize():
         ),
         comments="",
         fmt="%d",
+    )
+
+    print(
+        "Total update time:",
+        total_update_time * 1000,
+        "ms",
     )
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 
 using namespace rgbd_mapping;
 
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]){
     }
 
     const std::string input_path = argv[1];
+
+    double total_update_ms = 0.0;
 
     std::ifstream input_file(input_path);
 
@@ -82,12 +85,22 @@ int main(int argc, char* argv[]){
         if (current_frame_id == -1) {
             current_frame_id = frame_id;
         } if (current_frame_id != frame_id){
+            const auto start = std::chrono::steady_clock::now();
             map.update(
                 frame_points,
                 frame_colors,
                 frame_labels,
                 frame_confidences
             );
+
+            const auto end = std::chrono::steady_clock::now();
+
+            const double elapsed_ms =
+                std::chrono::duration<double, std::milli>(
+                    end - start
+                ).count();
+
+            total_update_ms += elapsed_ms;
 
             frame_points.clear();
             frame_colors.clear();
@@ -129,6 +142,10 @@ int main(int argc, char* argv[]){
             << " voxels\n";
     }
 
+    std::cerr
+        << "Total mapping update time: "
+        << total_update_ms
+        << " ms\n";
 
     const auto outputs = map.exportMap();
     std::cout << std::setprecision(16);
