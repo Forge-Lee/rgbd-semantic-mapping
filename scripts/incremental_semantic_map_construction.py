@@ -10,8 +10,10 @@ from src.rgbd_mapping.geometry.transforms import camera_pose_to_matrix, transfor
 from src.rgbd_mapping.semantics.palette import create_palette
 from src.rgbd_mapping.mapping.semantic_voxel_map import SemanticVoxelMap
 
-POINTCLOUD_OUTPUT_DIR = Path("outputs/day8/incre_test")
+POINTCLOUD_OUTPUT_DIR = Path("outputs/day10/incre_test")
 DATASET_ROOT = Path("data/raw/rgbd_dataset_freiburg1_xyz")
+PARITY_OUTPUT_DIR = Path("outputs/parity")
+PARITY_FRAMES = 20
 
 def save_coarse_class_layers(
     output_directory: Path,
@@ -77,9 +79,9 @@ def visualize():
     # voxel_size = [0.01, 0.02, 0.05]
     size = 0.02
     experiment_results = []
-    fx: float = 525.0, # official intrinsic parameter
-    fy: float = 525.0,
-    cx: float = 319.5,
+    fx: float = 525.0 # official intrinsic parameter
+    fy: float = 525.0
+    cx: float = 319.5
     cy: float = 239.5
 
     POINTCLOUD_OUTPUT_DIR.mkdir(
@@ -93,10 +95,17 @@ def visualize():
 
     segmenter = SemanticSegmenter(device="cpu")
     semantic_map = SemanticVoxelMap(voxel_size=size)
-    frame_index = 0
+    PARITY_OUTPUT_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    parity_observation_batches = []
+    parity_checkpoints = []
+
     palette = create_palette(number_of_classes=len(segmenter.id_to_label))
 
-    for record in selected_records:
+    for frame_index, record in enumerate(selected_records):
         pair = record.rgbd_pair
 
         rgb = iio.imread(
@@ -131,6 +140,27 @@ def visualize():
             transform=transform_world_camera,
         )
 
+        frame_ids = np.full(
+            (len(points_world), 1),
+            frame_index,
+            dtype=np.float64,
+        )
+
+        frame_observations = np.concatenate(
+            (
+                frame_ids,
+                points_world,
+                rgb_colors,
+                point_labels.reshape(-1, 1),
+                point_confidences.reshape(-1, 1),
+            ),
+            axis=1,
+        )
+
+        parity_observation_batches.append(
+            frame_observations
+        )
+
         semantic_map.update(
             points=points_world,
             rgb_colors=rgb_colors,
@@ -144,109 +174,180 @@ def visualize():
             f"{len(semantic_map)} voxels"
         )
 
-        if frame_index % 5 == 0:
-            snapshot = semantic_map.export()
-
-            np.savez_compressed(
-                snapshot_dir / f"snapshot_{frame_index:04d}.npz",
-                points=snapshot.points,
-                rgb_colors=snapshot.rgb_colors,
-                labels=snapshot.labels,
-                semantic_agreement=snapshot.semantic_agreement,
-                mean_model_confidence=snapshot.mean_model_confidence,
-                observation_counts=snapshot.observation_counts,
-                current_points_world=points_world,
+        parity_checkpoints.append(
+            (
+                frame_index,
+                len(points_world),
+                len(semantic_map),
             )
+        )
 
-            rgb_output_path = (
-                run_dir
-                / "rgb"
-                / f"rgb_{frame_index:04d}.png"
-            )
+        # if frame_index % 5 == 0:
+        #     snapshot = semantic_map.export()
 
-            iio.imwrite(
-                rgb_output_path,
-                rgb,
-            )
+        #     np.savez_compressed(
+        #         snapshot_dir / f"snapshot_{frame_index:04d}.npz",
+        #         points=snapshot.points,
+        #         rgb_colors=snapshot.rgb_colors,
+        #         labels=snapshot.labels,
+        #         semantic_agreement=snapshot.semantic_agreement,
+        #         mean_model_confidence=snapshot.mean_model_confidence,
+        #         observation_counts=snapshot.observation_counts,
+        #         current_points_world=points_world,
+        #     )
 
-            semantic_output_path = (
-                run_dir
-                / "semantic_2d"
-                / f"semantic_{frame_index:04d}.png"
-            )
+        #     rgb_output_path = (
+        #         run_dir
+        #         / "rgb"
+        #         / f"rgb_{frame_index:04d}.png"
+        #     )
 
-            semantic_colors = (
-                palette[prediction.labels]
-                * 255.0
-            ).astype(np.uint8)
+        #     iio.imwrite(
+        #         rgb_output_path,
+        #         rgb,
+        #     )
 
-            alpha = 0.45
+        #     semantic_output_path = (
+        #         run_dir
+        #         / "semantic_2d"
+        #         / f"semantic_{frame_index:04d}.png"
+        #     )
 
-            overlay = (
-                (1.0 - alpha)
-                * rgb.astype(np.float32)
-                + alpha
-                * semantic_colors.astype(np.float32)
-            )
+        #     semantic_colors = (
+        #         palette[prediction.labels]
+        #         * 255.0
+        #     ).astype(np.uint8)
 
-            overlay = np.clip(
-                overlay,
-                0,
-                255,
-            ).astype(np.uint8)
+        #     alpha = 0.45
 
-            iio.imwrite(
-                semantic_output_path,
-                overlay,
-            )
+        #     overlay = (
+        #         (1.0 - alpha)
+        #         * rgb.astype(np.float32)
+        #         + alpha
+        #         * semantic_colors.astype(np.float32)
+        #     )
 
-            # save_colored_ply(
-            #     output_path=(
-            #         POINTCLOUD_OUTPUT_DIR
-            #         / f"semantic_{frame_index:04d}.ply"
-            #     ),
-            #     points=snapshot.points,
-            #     colors=semantic_colors,
-            # )
+        #     overlay = np.clip(
+        #         overlay,
+        #         0,
+        #         255,
+        #     ).astype(np.uint8)
 
-            # save_colored_ply(
-            #     output_path=(
-            #         POINTCLOUD_OUTPUT_DIR
-            #         / f"rgb_{frame_index:04d}.ply"
-            #     ),
-            #     points=snapshot.points,
-            #     colors=snapshot.rgb_colors,
-            # )
+        #     iio.imwrite(
+        #         semantic_output_path,
+        #         overlay,
+        #     )
 
-        if frame_index % 10 == 0:
-            snapshot = semantic_map.export()
+        # if frame_index % 10 == 0:
+        #     snapshot = semantic_map.export()
 
-            semantic_colors = (
-                palette[snapshot.labels]
-                .astype(np.float32)
-                / 255.0
-            )
+        #     semantic_colors = (
+        #         palette[snapshot.labels]
+        #         .astype(np.float32)
+        #         / 255.0
+        #     )
 
-            save_colored_ply(
-                output_path=(
-                    POINTCLOUD_OUTPUT_DIR
-                    / f"semantic_{frame_index:04d}.ply"
-                ),
-                points=snapshot.points,
-                colors=semantic_colors,
-            )
+        #     save_colored_ply(
+        #         output_path=(
+        #             POINTCLOUD_OUTPUT_DIR
+        #             / f"semantic_{frame_index:04d}.ply"
+        #         ),
+        #         points=snapshot.points,
+        #         colors=semantic_colors,
+        #     )
 
-            save_colored_ply(
-                output_path=(
-                    POINTCLOUD_OUTPUT_DIR
-                    / f"rgb_{frame_index:04d}.ply"
-                ),
-                points=snapshot.points,
-                colors=snapshot.rgb_colors,
-            )
-        frame_index += 1
+        #     save_colored_ply(
+        #         output_path=(
+        #             POINTCLOUD_OUTPUT_DIR
+        #             / f"rgb_{frame_index:04d}.ply"
+        #         ),
+        #         points=snapshot.points,
+        #         colors=snapshot.rgb_colors,
+        #     )
 
+    all_observations = np.concatenate(
+        parity_observation_batches,
+        axis=0,
+    )
 
+    python_output = semantic_map.export()
+
+    python_summary = np.concatenate(
+        (
+            python_output.points,
+            python_output.rgb_colors,
+            python_output.labels.reshape(-1, 1),
+            python_output.semantic_agreement.reshape(-1, 1),
+            python_output.mean_model_confidence.reshape(-1, 1),
+            python_output.observation_counts.reshape(-1, 1),
+        ),
+        axis=1,
+    )
+
+    np.savetxt(
+        PARITY_OUTPUT_DIR
+        / "incremental_observations.csv",
+        all_observations,
+        delimiter=",",
+        header=(
+            "frame_id,x,y,z,"
+            "r,g,b,label,confidence"
+        ),
+        comments="",
+        fmt=[
+            "%.0f",   # frame_id
+            "%.17g",  # x
+            "%.17g",  # y
+            "%.17g",  # z
+            "%.17g",  # r
+            "%.17g",  # g
+            "%.17g",  # b
+            "%.0f",   # label
+            "%.17g",  # confidence
+        ],
+    )
+
+    np.savetxt(
+        PARITY_OUTPUT_DIR
+        / "python_final_map.csv",
+        python_summary,
+        delimiter=",",
+        header=(
+            "x,y,z,"
+            "r,g,b,"
+            "label,semantic_agreement,"
+            "mean_model_confidence,"
+            "observation_count"
+        ),
+        comments="",
+        fmt=[
+            "%.17g", "%.17g", "%.17g",
+            "%.17g", "%.17g", "%.17g",
+            "%.0f",
+            "%.17g",
+            "%.17g",
+            "%.0f",
+        ],
+    )
+
+    checkpoint_array = np.asarray(
+        parity_checkpoints,
+        dtype=np.int64,
+    )
+
+    np.savetxt(
+        PARITY_OUTPUT_DIR
+        / "python_checkpoints.csv",
+        checkpoint_array,
+        delimiter=",",
+        header=(
+            "frame_id,"
+            "observation_count,"
+            "voxel_count"
+        ),
+        comments="",
+        fmt="%d",
+    )
 
 if __name__ == "__main__":
     visualize()

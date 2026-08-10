@@ -4,46 +4,138 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <sstream>
+#include <string>
+#include <fstream>
+#include <iomanip>
 
 using namespace rgbd_mapping;
 
-int main(){
-    SemanticVoxelMap map(0.01);
+int main(int argc, char* argv[]){
+    if (argc != 2) {
+        std::cerr
+            << "Usage: parity_driver <input_csv>\n";
+        return 1;
+    }
 
-    std::vector<Vec3> points{
-        { 0.001, 0.002, 0.003},
-        { 0.004, 0.005, 0.006},
-        { 0.011, 0.000, 0.000},
-        {-0.001, 0.000, 0.000},
-        { 0.003, 0.001, 0.001},
-    };
+    const std::string input_path = argv[1];
 
-    std::vector<Vec3> colors{
-        {1.0, 0.0, 0.0},
-        {0.0, 1.0, 0.0},
-        {0.0, 0.0, 1.0},
-        {0.5, 0.5, 0.5},
-        {1.0, 1.0, 0.0},
-    };
+    std::ifstream input_file(input_path);
 
-    std::vector<int> labels{1, 2, 3, 4, 1};
+    if (!input_file.is_open()) {
+        std::cerr
+            << "Failed to open: "
+            << input_path
+            << "\n";
+        return 1;
+    }
 
-    std::vector<double> confidences{0.9, 0.6, 0.8, 0.7, 0.5};
+    SemanticVoxelMap map(0.02);
 
-    map.update(
-        points,
-        colors,
-        labels,
-        confidences
-    );
+    std::vector<Vec3> frame_points;
+    std::vector<Vec3> frame_colors;
+    std::vector<int> frame_labels;
+    std::vector<double> frame_confidences;
+
+    int current_frame_id = -1;
+
+    std::string line;
+
+    std::getline(input_file, line); // remove the header
+
+    while (std::getline(input_file, line)) {
+
+        std::stringstream ss(line);
+        std::string token;
+
+        // TODO: parse 9 columns
+        std::getline(ss, token, ',');
+        const int frame_id = std::stoi(token);
+
+        std::getline(ss, token, ',');
+        const double x = std::stod(token);
+
+        std::getline(ss, token, ',');
+        const double y = std::stod(token);
+
+        std::getline(ss, token, ',');
+        const double z = std::stod(token);
+
+        std::getline(ss, token, ',');
+        const double r = std::stod(token);
+
+        std::getline(ss, token, ',');
+        const double g = std::stod(token);
+
+        std::getline(ss, token, ',');
+        const double b = std::stod(token);
+
+        std::getline(ss, token, ',');
+        const int label = std::stoi(token);
+
+        std::getline(ss, token, ',');
+        const double confidence = std::stod(token);
+
+        Vec3 point{x, y, z};
+        Vec3 color{r, g, b};
+
+        if (current_frame_id == -1) {
+            current_frame_id = frame_id;
+        } if (current_frame_id != frame_id){
+            map.update(
+                frame_points,
+                frame_colors,
+                frame_labels,
+                frame_confidences
+            );
+
+            frame_points.clear();
+            frame_colors.clear();
+            frame_labels.clear();
+            frame_confidences.clear();
+
+            std::cerr
+                << "Frame "
+                << current_frame_id
+                << ": "
+                << frame_points.size()
+                << " observations, "
+                << map.size()
+                << " voxels\n";
+            
+            current_frame_id = frame_id;
+
+        } frame_points.push_back(point);
+        frame_colors.push_back(color);
+        frame_labels.push_back(label);
+        frame_confidences.push_back(confidence);
+    } if (!frame_points.empty()) {
+        // process the last frame
+
+        map.update(
+            frame_points,
+            frame_colors,
+            frame_labels,
+            frame_confidences
+        );
+
+        std::cerr
+            << "Frame "
+            << current_frame_id
+            << ": "
+            << frame_points.size()
+            << " observations, "
+            << map.size()
+            << " voxels\n";
+    }
+
 
     const auto outputs = map.exportMap();
-    std::cout<< "key_x,key_y,key_z,px,py,pz,r,g,b,label,agreement,mean_conf,count" <<"\n";
+    std::cout << std::setprecision(16);
+    std::cout<< "px,py,pz,r,g,b,label,agreement,mean_conf,count" <<"\n";
+
     for (const auto& voxel : outputs) {
         std::cout
-            << voxel.key.x << ","
-            << voxel.key.y << ","
-            << voxel.key.z << ","
             << voxel.point[0] << ","
             << voxel.point[1] << ","
             << voxel.point[2] << ","
