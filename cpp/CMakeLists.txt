@@ -26,3 +26,14 @@ target_link_libraries(
     PRIVATE
     semantic_voxel_map
 )
+
+add_executable(
+    parity_driver
+    tests/parity_driver.cpp
+)
+
+target_link_libraries(
+    parity_driver
+    PRIVATE
+    semantic_voxel_map
+)
