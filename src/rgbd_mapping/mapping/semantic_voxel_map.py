@@ -147,9 +147,7 @@ class SemanticVoxelMap:
                 label_scores[label_id] = confidence_value
 
 
-    def export(
-        self,
-    ) -> SemanticVoxelMapOutput:
+    def export(self) -> SemanticVoxelMapOutput:
         number_of_voxels = len(self.voxels)
         fused_points = np.empty(
             (number_of_voxels, 3),

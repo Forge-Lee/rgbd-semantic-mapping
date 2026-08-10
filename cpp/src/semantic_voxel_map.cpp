@@ -49,9 +49,6 @@ VoxelKey SemanticVoxelMap::pointToVoxel(
     const Vec3& point
 ) const {
     // TODO 1
-    //
-    // 对照 Python:
-    //
     Vec3 voxel_indices;
     for (int i = 0; i < 3; i++){
         voxel_indices[i] = std::floor(point[i] / voxel_size_);
@@ -60,11 +57,6 @@ VoxelKey SemanticVoxelMap::pointToVoxel(
         static_cast<int64_t>(voxel_indices[1]),
         static_cast<int64_t>(voxel_indices[2])
     };
-    //
-    // 注意负坐标！
-    //
-    // 返回:
-    // VoxelKey{..., ..., ...}
 
     // throw std::runtime_error(
     //     "TODO: pointToVoxel"
@@ -80,7 +72,7 @@ void SemanticVoxelMap::update(
 ) {
     // TODO 2:
     // sanity checks
-    int set_size = points.size();
+    const std::size_t set_size = points.size();
     if (set_size != rgb_colors.size()){
         throw std::runtime_error(
             "Different size between points and rgb colors"
@@ -97,7 +89,7 @@ void SemanticVoxelMap::update(
 
     // TODO 3:
     // empty observation return
-    if (points.size() == 0){
+    if (points.empty()){
         return;
     }
 
@@ -105,26 +97,20 @@ void SemanticVoxelMap::update(
     // 遍历所有 observation:
     for (int i = 0; i < set_size; i++){
         // 1. point -> voxel key
-        Vec3 curr_point = points[i];
-        Vec3 curr_color = rgb_colors[i];
-        double curr_confidence = confidences[i];
-        int curr_label = labels[i];
+        const Vec3& curr_point = points[i];
+        const Vec3& curr_color = rgb_colors[i];
+        const double curr_confidence = confidences[i];
+        const int curr_label = labels[i];
         VoxelKey curr_key = pointToVoxel(curr_point);
 
         // 2. 找到 / 创建 accumulator
-        if (voxels_.find(curr_key) == voxels_.end()){
-            // key doesn't exist
-            voxels_[curr_key];
-        }; SemanticVoxel& accumulator = voxels_[curr_key];
+        SemanticVoxel& accumulator = voxels_[curr_key];
 
         // 3. point_sum += point
+        // 4. color_sum += color
         for (int j = 0; j < 3; j++){
             accumulator.point_sum[j] += curr_point[j];
-        };
-
-        // 4. color_sum += color
-        for (int k = 0; k < 3; k++){
-            accumulator.color_sum[k] += curr_color[k];
+            accumulator.color_sum[j] += curr_color[j];
         };
 
         // 5. count += 1
@@ -134,31 +120,95 @@ void SemanticVoxelMap::update(
         accumulator.confidence_sum += curr_confidence;
 
         // 7. label_scores[label] += confidence
-        if (accumulator.label_scores.find(curr_label) == accumulator.label_scores.end()){
-            accumulator.label_scores[curr_label] = curr_confidence;
-        } else{
-            accumulator.label_scores[curr_label] += curr_confidence;
-        };
+        accumulator.label_scores[curr_label] += curr_confidence;
     }
 
 }
 
 
-std::vector<SemanticVoxelOutput>
-SemanticVoxelMap::exportMap() const {
-    // 先暂时不实现。
-    //
-    // 我们第一轮只验证 update 是否能正确
-    // 创建和累计 voxel。
+std::vector<SemanticVoxelOutput> SemanticVoxelMap::exportMap() const {
+    std::vector<SemanticVoxelOutput> outputs;
+    outputs.reserve(voxels_.size());
 
-    return {};
+    for (const auto& pair : voxels_) {
+        const VoxelKey& key = pair.first;
+        const SemanticVoxel& accumulator = pair.second;
+
+        // 1 & 2. mean point and mean color
+        Vec3 mean_point{}, mean_color{};
+        const Vec3 &curr_point = accumulator.point_sum;
+        const Vec3 &curr_color = accumulator.color_sum;
+        std::size_t voxel_count = accumulator.count;
+        for (int i=0; i < 3; i++){
+            mean_point[i] = curr_point[i] / static_cast<double>(voxel_count);
+            mean_color[i] = curr_color[i] / static_cast<double>(voxel_count);
+        }
+
+        // 3. find winning label
+        const std::unordered_map<int, double> &label_scores = accumulator.label_scores;
+        int winning_label = -1;
+        double winning_score = -1.0;
+        for (const auto &label_score_pair : label_scores){
+            const int curr_label = label_score_pair.first;
+            const double curr_score = label_score_pair.second;
+            if ((curr_score > winning_score) || 
+                ((curr_score == winning_score) && (curr_label < winning_label))){
+                winning_label = curr_label;
+                winning_score = curr_score;
+            }
+        }
+
+        // 4. semantic agreement
+        double total_score = accumulator.confidence_sum;
+        double semantic_agreement = 0.0;
+        if (total_score > 0.0){
+            semantic_agreement = winning_score / total_score;
+        } 
+
+        // 5. mean model confidence
+        double mean_model_confidence = total_score / static_cast<double>(voxel_count);
+
+        // 6. construct output
+        SemanticVoxelOutput curr_output = SemanticVoxelOutput{
+            key,
+            mean_point,
+            mean_color,
+            winning_label,
+            semantic_agreement,
+            mean_model_confidence,
+            voxel_count,
+        };
+
+        // 7. push_back
+        outputs.push_back(curr_output);
+    }
+
+    std::sort(
+        outputs.begin(),
+        outputs.end(),
+        [](const SemanticVoxelOutput& a,
+        const SemanticVoxelOutput& b) {
+
+            if (a.key.x != b.key.x) {
+                return a.key.x < b.key.x;
+            }
+
+            if (a.key.y != b.key.y) {
+                return a.key.y < b.key.y;
+            }
+
+            return a.key.z < b.key.z;
+        } // [](){} same as lambda function in python
+    );
+
+    return outputs;
 }
 
 
 std::size_t SemanticVoxelMap::size() const {
     // TODO 5
 
-    return 0;
+    return voxels_.size();
 }
 
 

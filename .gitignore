@@ -10,6 +10,7 @@ data/
 outputs/
 *.ply
 *.npz
+build/
 
 # Editors
 .vscode/
