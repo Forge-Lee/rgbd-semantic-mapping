@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import csv
 import numpy as np
 
 # schemas
@@ -204,9 +204,67 @@ def associate_rgbd_with_poses(
 
     return records
 
+def write_associated_records_csv(
+    records: list[RGBDRecord],
+    output_path: Path,
+) -> None:
+    # generate offline associated csv for ros2
+    output_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    with output_path.open(
+        "w",
+        newline="",
+        encoding="utf-8",
+    ) as file:
+
+        writer = csv.writer(file)
+
+        writer.writerow([
+            "frame_index",
+            "rgb_timestamp",
+            "rgb_path",
+            "depth_timestamp",
+            "depth_path",
+            "pose_timestamp",
+            "tx",
+            "ty",
+            "tz",
+            "qx",
+            "qy",
+            "qz",
+            "qw",
+        ])
+
+        for frame_index, record in enumerate(records):
+
+            pair = record.rgbd_pair
+            pose = record.pose
+
+            tx, ty, tz = pose.translation
+            qx, qy, qz, qw = pose.quaternion_xyzw
+
+            writer.writerow([
+                frame_index,
+                pair.rgb_timestamp,
+                str(pair.rgb_path),
+                pair.depth_timestamp,
+                str(pair.depth_path),
+                pose.timestamp,
+                tx,
+                ty,
+                tz,
+                qx,
+                qy,
+                qz,
+                qw,
+            ])
+
 # main function
 
-def main() -> None:
+def main():
     rgb_entries  = read_data_entries(DATASET_ROOT / "rgb.txt")
     depth_entries = read_data_entries(DATASET_ROOT / "depth.txt")
     groundtruth_entries = read_pose_entries(DATASET_ROOT / "groundtruth.txt")
@@ -238,6 +296,20 @@ def main() -> None:
     records = associate_rgbd_with_poses(
         pairs,
         groundtruth_entries,
+    )
+
+    output_csv = Path(
+        "data/processed/tum_associated_records.csv"
+    )
+
+    write_associated_records_csv(
+        records,
+        output_csv,
+    )
+
+    print(
+        f"Saved {len(records)} associated records to "
+        f"{output_csv}"
     )
 
     pose_differences = np.array([

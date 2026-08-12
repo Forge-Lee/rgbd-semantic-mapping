@@ -1,0 +1,26 @@
+[0.799s] Invoking command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/rgbd_replay': PYTHONPATH=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/rgbd_replay build --build-base /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/build install --record /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/install.log --install-scripts $base/lib/rgbd_replay --single-version-externally-managed install_data
+[1.265s] running egg_info
+[1.266s] writing ../../build/rgbd_replay/rgbd_replay.egg-info/PKG-INFO
+[1.267s] writing dependency_links to ../../build/rgbd_replay/rgbd_replay.egg-info/dependency_links.txt
+[1.269s] writing entry points to ../../build/rgbd_replay/rgbd_replay.egg-info/entry_points.txt
+[1.269s] writing requirements to ../../build/rgbd_replay/rgbd_replay.egg-info/requires.txt
+[1.271s] writing top-level names to ../../build/rgbd_replay/rgbd_replay.egg-info/top_level.txt
+[1.275s] reading manifest file '../../build/rgbd_replay/rgbd_replay.egg-info/SOURCES.txt'
+[1.277s] adding license file 'LICENSE'
+[1.278s] writing manifest file '../../build/rgbd_replay/rgbd_replay.egg-info/SOURCES.txt'
+[1.280s] running build
+[1.280s] running build_py
+[1.281s] copying rgbd_replay/replay_node.py -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/build/lib/rgbd_replay
+[1.282s] running install
+[1.282s] running install_lib
+[1.283s] copying /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/build/lib/rgbd_replay/replay_node.py -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages/rgbd_replay
+[1.286s] byte-compiling /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages/rgbd_replay/replay_node.py to replay_node.cpython-310.pyc
+[1.290s] running install_data
+[1.291s] copying package.xml -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/share/rgbd_replay
+[1.292s] running install_egg_info
+[1.295s] removing '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages/rgbd_replay-0.0.0-py3.10.egg-info' (and everything under it)
+[1.296s] Copying ../../build/rgbd_replay/rgbd_replay.egg-info to /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages/rgbd_replay-0.0.0-py3.10.egg-info
+[1.298s] running install_scripts
+[1.334s] Installing replay_node script to /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/rgbd_replay
+[1.340s] writing list of installed files to '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/install.log'
+[1.376s] Invoked command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/rgbd_replay' returned '0': PYTHONPATH=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/rgbd_replay build --build-base /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/build install --record /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/install.log --install-scripts $base/lib/rgbd_replay --single-version-externally-managed install_data
