@@ -1,0 +1,136 @@
+[0.186s] DEBUG:colcon:Command line arguments: ['../.venv/bin/colcon', 'build', '--symlink-install', '--packages-select', 'semantic_segmentation']
+[0.187s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['semantic_segmentation'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7cb740963400>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7cb740962a10>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7cb740962a10>>)
+[0.367s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.367s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.367s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.367s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.367s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.367s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.367s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extensions ['ignore', 'ignore_ament_install']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extension 'ignore'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extension 'ignore_ament_install'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extensions ['colcon_pkg']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extension 'colcon_pkg'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extensions ['colcon_meta']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extension 'colcon_meta'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extensions ['ros']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(src/rgbd_replay) by extension 'ros'
+[0.438s] DEBUG:colcon.colcon_core.package_identification:Package 'src/rgbd_replay' with type 'ros.ament_python' and name 'rgbd_replay'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extensions ['ignore', 'ignore_ament_install']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extension 'ignore'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extension 'ignore_ament_install'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extensions ['colcon_pkg']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extension 'colcon_pkg'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extensions ['colcon_meta']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extension 'colcon_meta'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extensions ['ros']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/semantic_segmentation) by extension 'ros'
+[0.440s] DEBUG:colcon.colcon_core.package_identification:Package 'src/semantic_segmentation' with type 'ros.ament_python' and name 'semantic_segmentation'
+[0.440s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.440s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.441s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.441s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.441s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.460s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'rgbd_replay' in 'src/rgbd_replay'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'cmake_args' from command line to 'None'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'cmake_target' from command line to 'None'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'cmake_clean_cache' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'cmake_clean_first' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'cmake_force_configure' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'ament_cmake_args' from command line to 'None'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'catkin_cmake_args' from command line to 'None'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'semantic_segmentation' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.460s] DEBUG:colcon.colcon_core.verb:Building package 'semantic_segmentation' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation', 'merge_install': False, 'path': '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/semantic_segmentation', 'symlink_install': True, 'test_result_base': None}
+[0.460s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.469s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.470s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/semantic_segmentation' with build type 'ament_python'
+[0.470s] Level 1:colcon.colcon_core.shell:create_environment_hook('semantic_segmentation', 'ament_prefix_path')
+[0.473s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.473s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/hook/ament_prefix_path.ps1'
+[0.474s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/hook/ament_prefix_path.dsv'
+[0.474s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/hook/ament_prefix_path.sh'
+[0.475s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.475s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.781s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/semantic_segmentation'
+[0.782s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.782s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.431s] DEBUG:colcon.colcon_core.task.python.build:Available setuptools commands: build_scripts, setopt, alias, dist_info, egg_info, rotate, develop, bdist_wheel, bdist, clean, build_py, check, bdist_rpm, build_clib, sdist, saveopts, symlink_data, bdist_egg, install, install_headers, bdist_dumb, editable_wheel, install_lib, install_data, install_scripts, build_ext, install_egg_info, build, easy_install
+[1.753s] DEBUG:colcon.colcon_core.task.python.build:Available setuptools 'develop' options: --exclude-scripts, --egg-path, --quiet, --help, --no-deps, --prefix, --dry-run, --install-dir, --verbose, --script-dir, --no-user-cfg, --index-url, --editable, --version, --user, --record, --build-directory, --site-dirs, --upgrade, --find-links, --no-find-links, --multi-version, --uninstall, --allow-hosts, --always-unzip, --always-copy, --local-snapshots-ok, --optimize, --zip-ok
+[1.765s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation': PYTHONPATH=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/prefix_override:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/build --no-deps symlink_data
+[2.398s] Level 1:colcon.colcon_core.shell:create_environment_hook('semantic_segmentation', 'pythonpath_develop')
+[2.398s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/share/semantic_segmentation/hook/pythonpath_develop.ps1'
+[2.399s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/share/semantic_segmentation/hook/pythonpath_develop.dsv'
+[2.400s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/share/semantic_segmentation/hook/pythonpath_develop.sh'
+[2.400s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation' returned '0': PYTHONPATH=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/prefix_override:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/build --no-deps symlink_data
+[2.408s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation' for CMake module files
+[2.408s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation' for CMake config files
+[2.409s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib'
+[2.410s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/bin'
+[2.410s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/pkgconfig/semantic_segmentation.pc'
+[2.410s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages'
+[2.410s] Level 1:colcon.colcon_core.shell:create_environment_hook('semantic_segmentation', 'pythonpath')
+[2.411s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/hook/pythonpath.ps1'
+[2.412s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/hook/pythonpath.dsv'
+[2.413s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/hook/pythonpath.sh'
+[2.414s] Level 1:colcon.colcon_core.environment:checking '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/bin'
+[2.414s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(semantic_segmentation)
+[2.415s] INFO:colcon.colcon_core.shell:Creating package script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/package.ps1'
+[2.418s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/package.dsv'
+[2.420s] INFO:colcon.colcon_core.shell:Creating package script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/package.sh'
+[2.421s] INFO:colcon.colcon_core.shell:Creating package script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/package.bash'
+[2.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation/package.zsh'
+[2.424s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/colcon-core/packages/semantic_segmentation)
+[2.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.425s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.425s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.427s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.427s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/local_setup.ps1'
+[2.431s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/_local_setup_util_ps1.py'
+[2.436s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/setup.ps1'
+[2.441s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/local_setup.sh'
+[2.442s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/_local_setup_util_sh.py'
+[2.443s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/setup.sh'
+[2.449s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/local_setup.bash'
+[2.452s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/setup.bash'
+[2.454s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/local_setup.zsh'
+[2.455s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/setup.zsh'

@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing rgbd_replay.egg-info/PKG-INFO
+writing dependency_links to rgbd_replay.egg-info/dependency_links.txt
+writing entry points to rgbd_replay.egg-info/entry_points.txt
+writing requirements to rgbd_replay.egg-info/requires.txt
+writing top-level names to rgbd_replay.egg-info/top_level.txt
+reading manifest file 'rgbd_replay.egg-info/SOURCES.txt'
+writing manifest file 'rgbd_replay.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages/rgbd-replay.egg-link (link to .)
+Installing replay_node script to /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/rgbd_replay
+
+Installed /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay
+running symlink_data
+symbolically linking /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/resource/rgbd_replay -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/share/ament_index/resource_index/packages
+symbolically linking /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay/package.xml -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/share/rgbd_replay

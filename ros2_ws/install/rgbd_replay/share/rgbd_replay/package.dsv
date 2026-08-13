@@ -4,3 +4,6 @@ source;share/rgbd_replay/hook/pythonpath.sh
 source;share/rgbd_replay/hook/ament_prefix_path.ps1
 source;share/rgbd_replay/hook/ament_prefix_path.dsv
 source;share/rgbd_replay/hook/ament_prefix_path.sh
+source;../../build/rgbd_replay/share/rgbd_replay/hook/pythonpath_develop.ps1
+source;../../build/rgbd_replay/share/rgbd_replay/hook/pythonpath_develop.dsv
+source;../../build/rgbd_replay/share/rgbd_replay/hook/pythonpath_develop.sh

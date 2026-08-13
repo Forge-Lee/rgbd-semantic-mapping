@@ -1,0 +1,24 @@
+[1.102s] Invoking command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation': PYTHONPATH=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/build --no-deps symlink_data
+[1.443s] running develop
+[1.589s] running egg_info
+[1.589s] creating semantic_segmentation.egg-info
+[1.591s] writing semantic_segmentation.egg-info/PKG-INFO
+[1.591s] writing dependency_links to semantic_segmentation.egg-info/dependency_links.txt
+[1.591s] writing entry points to semantic_segmentation.egg-info/entry_points.txt
+[1.591s] writing requirements to semantic_segmentation.egg-info/requires.txt
+[1.591s] writing top-level names to semantic_segmentation.egg-info/top_level.txt
+[1.591s] writing manifest file 'semantic_segmentation.egg-info/SOURCES.txt'
+[1.591s] reading manifest file 'semantic_segmentation.egg-info/SOURCES.txt'
+[1.591s] writing manifest file 'semantic_segmentation.egg-info/SOURCES.txt'
+[1.592s] running build_ext
+[1.593s] Creating /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages/semantic-segmentation.egg-link (link to .)
+[1.594s] Installing segmentation_node script to /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/semantic_segmentation
+[1.594s] 
+[1.594s] Installed /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation
+[1.594s] running symlink_data
+[1.594s] creating /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/ament_index
+[1.594s] creating /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/ament_index/resource_index
+[1.595s] creating /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/ament_index/resource_index/packages
+[1.595s] symbolically linking /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/resource/semantic_segmentation -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/ament_index/resource_index/packages
+[1.595s] symbolically linking /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/package.xml -> /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/share/semantic_segmentation
+[1.633s] Invoked command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation' returned '0': PYTHONPATH=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation/build --no-deps symlink_data

@@ -96,7 +96,7 @@ class RGBDReplayNode(Node):
         self.bridge = CvBridge()
 
         self.timer = self.create_timer(
-            0.5,
+            2.0,
             self.timer_callback,
         )
 
