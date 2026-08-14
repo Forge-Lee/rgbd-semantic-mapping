@@ -2,9 +2,7 @@ import rclpy
 import cv2
 import numpy as np
 from rclpy.node import Node
-from std_msgs.msg import Int32
 from sensor_msgs.msg import Image
-from geometry_msgs.msg import PoseStamped
 from cv_bridge import CvBridge
 
 from rgbd_mapping.semantics.inference import SemanticSegmenter
