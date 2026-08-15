@@ -1,1 +1,1 @@
-prepend-non-duplicate-if-exists;PATH;bin
+/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping/ament_cmake_environment_hooks/path.dsv

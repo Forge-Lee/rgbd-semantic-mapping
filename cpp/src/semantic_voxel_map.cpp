@@ -95,7 +95,7 @@ void SemanticVoxelMap::update(
 
     // TODO 4:
     // 遍历所有 observation:
-    for (int i = 0; i < set_size; i++){
+    for (std::size_t i = 0; i < set_size; i++){
         // 1. point -> voxel key
         const Vec3& curr_point = points[i];
         const Vec3& curr_color = rgb_colors[i];

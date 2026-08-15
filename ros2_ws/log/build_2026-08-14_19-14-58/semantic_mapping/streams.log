@@ -1,0 +1,86 @@
+[0.031s] Invoking command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping': CMAKE_PREFIX_PATH=/opt/ros/humble VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/semantic_mapping -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping
+[0.349s] -- The C compiler identification is GNU 11.4.0
+[0.498s] -- The CXX compiler identification is GNU 11.4.0
+[0.524s] -- Detecting C compiler ABI info
+[0.758s] -- Detecting C compiler ABI info - done
+[0.767s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.771s] -- Detecting C compile features
+[0.773s] -- Detecting C compile features - done
+[0.781s] -- Detecting CXX compiler ABI info
+[0.938s] -- Detecting CXX compiler ABI info - done
+[0.940s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.940s] -- Detecting CXX compile features
+[0.941s] -- Detecting CXX compile features - done
+[0.946s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.557s] -- Found Python3: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.636s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.679s] -- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)
+[1.728s] -- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.731s] -- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.741s] -- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.757s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.777s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.822s] -- Found rmw_implementation_cmake: 6.1.3 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.825s] -- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[2.026s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[2.057s] -- Found FastRTPS: /opt/ros/humble/include  
+[2.126s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.138s] -- Looking for pthread.h
+[2.296s] -- Looking for pthread.h - found
+[2.297s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.420s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[2.422s] -- Found Threads: TRUE  
+[2.505s] -- Found sensor_msgs: 4.9.2 (/opt/ros/humble/share/sensor_msgs/cmake)
+[2.569s] -- Found message_filters: 4.3.19 (/opt/ros/humble/share/message_filters/cmake)
+[2.578s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[2.595s] -- Found tf2: 0.25.22 (/opt/ros/humble/share/tf2/cmake)
+[2.617s] -- Found tf2_geometry_msgs: 0.25.22 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[2.646s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[2.647s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[2.647s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[2.776s] -- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[2.999s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[3.000s] -- Configured cppcheck include dirs: 
+[3.000s] -- Configured cppcheck exclude dirs and/or files: 
+[3.000s] -- Added test 'lint_cmake' to check CMake code style
+[3.002s] -- Added test 'uncrustify' to check C / C++ code style
+[3.002s] -- Configured uncrustify additional arguments: 
+[3.004s] -- Added test 'xmllint' to check XML markup files
+[3.007s] -- Configuring done
+[3.042s] -- Generating done
+[3.057s] -- Build files have been written to: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping
+[3.076s] Invoked command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/src/semantic_mapping -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping
+[3.077s] Invoking command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping': CMAKE_PREFIX_PATH=/opt/ros/humble VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --build /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping -- -j4 -l4
+[3.202s] [ 12%] [32mBuilding CXX object rgbd_core_build/CMakeFiles/semantic_voxel_map.dir/src/semantic_voxel_map.cpp.o[0m
+[4.292s] [ 25%] [32m[1mLinking CXX static library libsemantic_voxel_map.a[0m
+[4.376s] [ 25%] Built target semantic_voxel_map
+[4.413s] [ 37%] [32mBuilding CXX object rgbd_core_build/CMakeFiles/parity_driver.dir/tests/parity_driver.cpp.o[0m
+[4.420s] [ 50%] [32mBuilding CXX object rgbd_core_build/CMakeFiles/test_semantic_voxel_map.dir/tests/test_semantic_voxel_map.cpp.o[0m
+[4.422s] [ 62%] [32mBuilding CXX object CMakeFiles/semantic_mapping_node.dir/src/semantic_mapping_node.cpp.o[0m
+[5.371s] [ 75%] [32m[1mLinking CXX executable test_semantic_voxel_map[0m
+[5.514s] [ 75%] Built target test_semantic_voxel_map
+[5.605s] [ 87%] [32m[1mLinking CXX executable parity_driver[0m
+[5.761s] [ 87%] Built target parity_driver
+[21.989s] [100%] [32m[1mLinking CXX executable semantic_mapping_node[0m
+[23.369s] [100%] Built target semantic_mapping_node
+[23.394s] Invoked command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --build /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping -- -j4 -l4
+[23.418s] Invoking command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping': CMAKE_PREFIX_PATH=/opt/ros/humble VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --install /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping
+[23.432s] -- Install configuration: ""
+[23.432s] -- Execute custom install script
+[23.432s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/lib/semantic_mapping/semantic_mapping_node
+[23.449s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/package_run_dependencies/semantic_mapping
+[23.458s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/parent_prefix_path/semantic_mapping
+[23.468s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/ament_prefix_path.sh
+[23.488s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/ament_prefix_path.dsv
+[23.500s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/path.sh
+[23.513s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/path.dsv
+[23.525s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.bash
+[23.535s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.sh
+[23.547s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.zsh
+[23.559s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.dsv
+[23.573s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/package.dsv
+[23.585s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/packages/semantic_mapping
+[23.613s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/cmake/semantic_mappingConfig.cmake
+[23.625s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/cmake/semantic_mappingConfig-version.cmake
+[23.636s] -- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/package.xml
+[23.651s] Invoked command in '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --install /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping

@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.8)
 project(semantic_mapping)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -11,6 +14,24 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(message_filters REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+
+set(
+  RGBD_CORE_DIR
+  "${CMAKE_CURRENT_SOURCE_DIR}/../../../cpp"
+)
+
+add_subdirectory(
+  "${RGBD_CORE_DIR}"
+  "${CMAKE_CURRENT_BINARY_DIR}/rgbd_core_build"
+)
+
+add_executable(
+  semantic_mapping_node
+  src/semantic_mapping_node.cpp
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -23,10 +44,7 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-add_executable(
-  semantic_mapping_node
-  src/semantic_mapping_node.cpp
-)
+
 
 ament_target_dependencies(
   semantic_mapping_node
@@ -34,6 +52,14 @@ ament_target_dependencies(
   sensor_msgs
   geometry_msgs
   message_filters
+  cv_bridge
+  tf2
+  tf2_geometry_msgs
+)
+
+target_link_libraries(
+  semantic_mapping_node
+  semantic_voxel_map
 )
 
 install(

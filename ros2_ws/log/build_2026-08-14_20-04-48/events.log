@@ -1,0 +1,376 @@
+[0.000000] (-) TimerEvent: {}
+[0.001313] (-) JobUnselected: {'identifier': 'rgbd_replay'}
+[0.003251] (-) JobUnselected: {'identifier': 'semantic_segmentation'}
+[0.003410] (semantic_mapping) JobQueued: {'identifier': 'semantic_mapping', 'dependencies': OrderedDict()}
+[0.003451] (semantic_mapping) JobStarted: {'identifier': 'semantic_mapping'}
+[0.054544] (semantic_mapping) JobProgress: {'identifier': 'semantic_mapping', 'progress': 'cmake'}
+[0.058118] (semantic_mapping) JobProgress: {'identifier': 'semantic_mapping', 'progress': 'build'}
+[0.058199] (semantic_mapping) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping', '--', '-j4', '-l4'], 'cwd': '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'yutao'), ('SSH_CLIENT', '10.0.2.2 59107 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/yutao'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping'), ('TERM_PROGRAM_VERSION', '1.133.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-8814a504-cb03-41e2-8936-d91b3488a2b2.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\](.venv) \\[\x1b]633;A\x07\\]\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \\[\x1b]633;B\x07\\]\\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/node'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/yutao/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/yutao/miniconda3'), ('COLCON_PREFIX_PATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'yutao'), ('_', '../.venv/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/bin:/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/bin/remote-cli:/home/yutao/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/yutao/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/yutao/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-231201c87438cba4.txt'), ('LANG', 'en_US.UTF-8'), ('PYTHONSTARTUP', '/home/yutao/.vscode-server/data/User/workspaceStorage/7d21798f5f84279e0b2671f9e680c4dd/ms-python.python/pythonrc.py'), ('VIRTUAL_ENV_PROMPT', '(.venv)'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-b7ee329800.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/yutao/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('_CONDA_EXE', '/home/yutao/miniconda3/bin/conda'), ('VIRTUAL_ENV', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping'), ('CONDA_EXE', '/home/yutao/miniconda3/bin/conda'), ('SSH_CONNECTION', '10.0.2.2 59107 10.0.2.15 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/src:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/src:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/src:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay:/opt/ros/humble')]), 'shell': False}
+[0.104860] (-) TimerEvent: {}
+[0.205873] (-) TimerEvent: {}
+[0.308195] (-) TimerEvent: {}
+[0.409312] (-) TimerEvent: {}
+[0.510694] (-) TimerEvent: {}
+[0.613093] (-) TimerEvent: {}
+[0.716916] (-) TimerEvent: {}
+[0.821320] (-) TimerEvent: {}
+[0.863028] (semantic_mapping) StdoutLine: {'line': b'[ 25%] Built target semantic_voxel_map\n'}
+[0.921608] (-) TimerEvent: {}
+[1.012588] (semantic_mapping) StdoutLine: {'line': b'[ 50%] Built target parity_driver\n'}
+[1.023414] (-) TimerEvent: {}
+[1.079306] (semantic_mapping) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target semantic_mapping_node\x1b[0m\n'}
+[1.113104] (semantic_mapping) StdoutLine: {'line': b'[ 75%] Built target test_semantic_voxel_map\n'}
+[1.125233] (-) TimerEvent: {}
+[1.235896] (-) TimerEvent: {}
+[1.343573] (-) TimerEvent: {}
+[1.445306] (-) TimerEvent: {}
+[1.546154] (-) TimerEvent: {}
+[1.598125] (semantic_mapping) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding CXX object CMakeFiles/semantic_mapping_node.dir/src/semantic_mapping_node.cpp.o\x1b[0m\n'}
+[1.646693] (-) TimerEvent: {}
+[1.749282] (-) TimerEvent: {}
+[1.853815] (-) TimerEvent: {}
+[1.962258] (-) TimerEvent: {}
+[2.075444] (-) TimerEvent: {}
+[2.178370] (-) TimerEvent: {}
+[2.283550] (-) TimerEvent: {}
+[2.391005] (-) TimerEvent: {}
+[2.495420] (-) TimerEvent: {}
+[2.596021] (-) TimerEvent: {}
+[2.700638] (-) TimerEvent: {}
+[2.809185] (-) TimerEvent: {}
+[2.911626] (-) TimerEvent: {}
+[3.028205] (-) TimerEvent: {}
+[3.132576] (-) TimerEvent: {}
+[3.236888] (-) TimerEvent: {}
+[3.339342] (-) TimerEvent: {}
+[3.449078] (-) TimerEvent: {}
+[3.549987] (-) TimerEvent: {}
+[3.663150] (-) TimerEvent: {}
+[3.783195] (-) TimerEvent: {}
+[3.893157] (-) TimerEvent: {}
+[3.994127] (-) TimerEvent: {}
+[4.097469] (-) TimerEvent: {}
+[4.205002] (-) TimerEvent: {}
+[4.312574] (-) TimerEvent: {}
+[4.428951] (-) TimerEvent: {}
+[4.533349] (-) TimerEvent: {}
+[4.634830] (-) TimerEvent: {}
+[4.737958] (-) TimerEvent: {}
+[4.846498] (-) TimerEvent: {}
+[4.948808] (-) TimerEvent: {}
+[5.056487] (-) TimerEvent: {}
+[5.174375] (-) TimerEvent: {}
+[5.278177] (-) TimerEvent: {}
+[5.380934] (-) TimerEvent: {}
+[5.485473] (-) TimerEvent: {}
+[5.587640] (-) TimerEvent: {}
+[5.694377] (-) TimerEvent: {}
+[5.797331] (-) TimerEvent: {}
+[5.898280] (-) TimerEvent: {}
+[6.000608] (-) TimerEvent: {}
+[6.102656] (-) TimerEvent: {}
+[6.218743] (-) TimerEvent: {}
+[6.333228] (-) TimerEvent: {}
+[6.436131] (-) TimerEvent: {}
+[6.538247] (-) TimerEvent: {}
+[6.639802] (-) TimerEvent: {}
+[6.764546] (-) TimerEvent: {}
+[6.878452] (-) TimerEvent: {}
+[6.980063] (-) TimerEvent: {}
+[7.081632] (-) TimerEvent: {}
+[7.199317] (-) TimerEvent: {}
+[7.300484] (-) TimerEvent: {}
+[7.402095] (-) TimerEvent: {}
+[7.503106] (-) TimerEvent: {}
+[7.603894] (-) TimerEvent: {}
+[7.705659] (-) TimerEvent: {}
+[7.807778] (-) TimerEvent: {}
+[7.914460] (-) TimerEvent: {}
+[8.015157] (-) TimerEvent: {}
+[8.121144] (-) TimerEvent: {}
+[8.226046] (-) TimerEvent: {}
+[8.337406] (-) TimerEvent: {}
+[8.438049] (-) TimerEvent: {}
+[8.548069] (-) TimerEvent: {}
+[8.649697] (-) TimerEvent: {}
+[8.770875] (-) TimerEvent: {}
+[8.872619] (-) TimerEvent: {}
+[8.974107] (-) TimerEvent: {}
+[9.077856] (-) TimerEvent: {}
+[9.183599] (-) TimerEvent: {}
+[9.293507] (-) TimerEvent: {}
+[9.393933] (-) TimerEvent: {}
+[9.494988] (-) TimerEvent: {}
+[9.595627] (-) TimerEvent: {}
+[9.716472] (-) TimerEvent: {}
+[9.819979] (-) TimerEvent: {}
+[9.924769] (-) TimerEvent: {}
+[10.027086] (-) TimerEvent: {}
+[10.128158] (-) TimerEvent: {}
+[10.229614] (-) TimerEvent: {}
+[10.331209] (-) TimerEvent: {}
+[10.432200] (-) TimerEvent: {}
+[10.537567] (-) TimerEvent: {}
+[10.641613] (-) TimerEvent: {}
+[10.743238] (-) TimerEvent: {}
+[10.872019] (-) TimerEvent: {}
+[10.973559] (-) TimerEvent: {}
+[11.079346] (-) TimerEvent: {}
+[11.189914] (-) TimerEvent: {}
+[11.324468] (-) TimerEvent: {}
+[11.425940] (-) TimerEvent: {}
+[11.526483] (-) TimerEvent: {}
+[11.627642] (-) TimerEvent: {}
+[11.728914] (-) TimerEvent: {}
+[11.831407] (-) TimerEvent: {}
+[11.948936] (-) TimerEvent: {}
+[12.050890] (-) TimerEvent: {}
+[12.153065] (-) TimerEvent: {}
+[12.254487] (-) TimerEvent: {}
+[12.359017] (-) TimerEvent: {}
+[12.474853] (-) TimerEvent: {}
+[12.580512] (-) TimerEvent: {}
+[12.681472] (-) TimerEvent: {}
+[12.822168] (-) TimerEvent: {}
+[12.927586] (-) TimerEvent: {}
+[13.033383] (-) TimerEvent: {}
+[13.133788] (-) TimerEvent: {}
+[13.312598] (-) TimerEvent: {}
+[13.414535] (-) TimerEvent: {}
+[13.516491] (-) TimerEvent: {}
+[13.647235] (-) TimerEvent: {}
+[13.777843] (-) TimerEvent: {}
+[13.883928] (-) TimerEvent: {}
+[13.986431] (-) TimerEvent: {}
+[14.089271] (-) TimerEvent: {}
+[14.190700] (-) TimerEvent: {}
+[14.304142] (-) TimerEvent: {}
+[14.405892] (-) TimerEvent: {}
+[14.523672] (-) TimerEvent: {}
+[14.625029] (-) TimerEvent: {}
+[14.743883] (-) TimerEvent: {}
+[14.845650] (-) TimerEvent: {}
+[14.959617] (-) TimerEvent: {}
+[15.071567] (-) TimerEvent: {}
+[15.187698] (-) TimerEvent: {}
+[15.292753] (-) TimerEvent: {}
+[15.393704] (-) TimerEvent: {}
+[15.509462] (-) TimerEvent: {}
+[15.611381] (-) TimerEvent: {}
+[15.714052] (-) TimerEvent: {}
+[15.828666] (-) TimerEvent: {}
+[15.930838] (-) TimerEvent: {}
+[16.035589] (-) TimerEvent: {}
+[16.143549] (-) TimerEvent: {}
+[16.245823] (-) TimerEvent: {}
+[16.351172] (-) TimerEvent: {}
+[16.452197] (-) TimerEvent: {}
+[16.553740] (-) TimerEvent: {}
+[16.655956] (-) TimerEvent: {}
+[16.768513] (-) TimerEvent: {}
+[16.874481] (-) TimerEvent: {}
+[16.994116] (-) TimerEvent: {}
+[17.094879] (-) TimerEvent: {}
+[17.205111] (-) TimerEvent: {}
+[17.315091] (-) TimerEvent: {}
+[17.416133] (-) TimerEvent: {}
+[17.517900] (-) TimerEvent: {}
+[17.618567] (-) TimerEvent: {}
+[17.729922] (-) TimerEvent: {}
+[17.840384] (-) TimerEvent: {}
+[17.946076] (-) TimerEvent: {}
+[18.048668] (-) TimerEvent: {}
+[18.150713] (-) TimerEvent: {}
+[18.262010] (-) TimerEvent: {}
+[18.362899] (-) TimerEvent: {}
+[18.465457] (-) TimerEvent: {}
+[18.571114] (-) TimerEvent: {}
+[18.672252] (-) TimerEvent: {}
+[18.773057] (-) TimerEvent: {}
+[18.873463] (-) TimerEvent: {}
+[18.973876] (-) TimerEvent: {}
+[19.083904] (-) TimerEvent: {}
+[19.204529] (-) TimerEvent: {}
+[19.307602] (-) TimerEvent: {}
+[19.408623] (-) TimerEvent: {}
+[19.509497] (-) TimerEvent: {}
+[19.623767] (-) TimerEvent: {}
+[19.725753] (-) TimerEvent: {}
+[19.827405] (-) TimerEvent: {}
+[19.940662] (-) TimerEvent: {}
+[20.052289] (-) TimerEvent: {}
+[20.155879] (-) TimerEvent: {}
+[20.319562] (-) TimerEvent: {}
+[20.430247] (-) TimerEvent: {}
+[20.531163] (-) TimerEvent: {}
+[20.631911] (-) TimerEvent: {}
+[20.733897] (-) TimerEvent: {}
+[20.838824] (-) TimerEvent: {}
+[20.939517] (-) TimerEvent: {}
+[21.041362] (-) TimerEvent: {}
+[21.143077] (-) TimerEvent: {}
+[21.256603] (-) TimerEvent: {}
+[21.358051] (-) TimerEvent: {}
+[21.462643] (-) TimerEvent: {}
+[21.563467] (-) TimerEvent: {}
+[21.663991] (-) TimerEvent: {}
+[21.766226] (-) TimerEvent: {}
+[21.869983] (-) TimerEvent: {}
+[21.970836] (-) TimerEvent: {}
+[22.071328] (-) TimerEvent: {}
+[22.172625] (-) TimerEvent: {}
+[22.281002] (-) TimerEvent: {}
+[22.382412] (-) TimerEvent: {}
+[22.484937] (-) TimerEvent: {}
+[22.585424] (-) TimerEvent: {}
+[22.686410] (-) TimerEvent: {}
+[22.787721] (-) TimerEvent: {}
+[22.889301] (-) TimerEvent: {}
+[22.989858] (-) TimerEvent: {}
+[23.090703] (-) TimerEvent: {}
+[23.192893] (-) TimerEvent: {}
+[23.315436] (-) TimerEvent: {}
+[23.430241] (-) TimerEvent: {}
+[23.531897] (-) TimerEvent: {}
+[23.640958] (-) TimerEvent: {}
+[23.742908] (-) TimerEvent: {}
+[23.843798] (-) TimerEvent: {}
+[23.946019] (-) TimerEvent: {}
+[24.046613] (-) TimerEvent: {}
+[24.147260] (-) TimerEvent: {}
+[24.247941] (-) TimerEvent: {}
+[24.349635] (-) TimerEvent: {}
+[24.453782] (-) TimerEvent: {}
+[24.563750] (-) TimerEvent: {}
+[24.686593] (-) TimerEvent: {}
+[24.809572] (-) TimerEvent: {}
+[24.911579] (-) TimerEvent: {}
+[25.013976] (-) TimerEvent: {}
+[25.116230] (-) TimerEvent: {}
+[25.221908] (-) TimerEvent: {}
+[25.322592] (-) TimerEvent: {}
+[25.428790] (-) TimerEvent: {}
+[25.535873] (-) TimerEvent: {}
+[25.642748] (-) TimerEvent: {}
+[25.748985] (-) TimerEvent: {}
+[25.853430] (-) TimerEvent: {}
+[25.967841] (-) TimerEvent: {}
+[26.075138] (-) TimerEvent: {}
+[26.188538] (-) TimerEvent: {}
+[26.293424] (-) TimerEvent: {}
+[26.398179] (-) TimerEvent: {}
+[26.502411] (-) TimerEvent: {}
+[26.605321] (-) TimerEvent: {}
+[26.708301] (-) TimerEvent: {}
+[26.820737] (-) TimerEvent: {}
+[26.922314] (-) TimerEvent: {}
+[27.025287] (-) TimerEvent: {}
+[27.141388] (-) TimerEvent: {}
+[27.252830] (-) TimerEvent: {}
+[27.361168] (-) TimerEvent: {}
+[27.476377] (-) TimerEvent: {}
+[27.577794] (-) TimerEvent: {}
+[27.679148] (-) TimerEvent: {}
+[27.790635] (-) TimerEvent: {}
+[27.894192] (-) TimerEvent: {}
+[28.008024] (-) TimerEvent: {}
+[28.116034] (-) TimerEvent: {}
+[28.217841] (-) TimerEvent: {}
+[28.324617] (-) TimerEvent: {}
+[28.425273] (-) TimerEvent: {}
+[28.529195] (-) TimerEvent: {}
+[28.638070] (-) TimerEvent: {}
+[28.750994] (-) TimerEvent: {}
+[28.862918] (-) TimerEvent: {}
+[28.966976] (-) TimerEvent: {}
+[29.074063] (-) TimerEvent: {}
+[29.197740] (-) TimerEvent: {}
+[29.311658] (-) TimerEvent: {}
+[29.421988] (-) TimerEvent: {}
+[29.528045] (-) TimerEvent: {}
+[29.634618] (-) TimerEvent: {}
+[29.737951] (-) TimerEvent: {}
+[29.855930] (-) TimerEvent: {}
+[29.957464] (-) TimerEvent: {}
+[30.021025] (<colcon_parallel_executor.executor.parallel.ParallelExecutorExtension object at 0x7a722659c850>) ParallelStatus: {'processing': ('semantic_mapping',)}
+[30.063872] (-) TimerEvent: {}
+[30.164926] (-) TimerEvent: {}
+[30.270514] (-) TimerEvent: {}
+[30.386509] (-) TimerEvent: {}
+[30.492050] (-) TimerEvent: {}
+[30.596183] (-) TimerEvent: {}
+[30.697593] (-) TimerEvent: {}
+[30.813019] (-) TimerEvent: {}
+[30.914976] (-) TimerEvent: {}
+[31.025081] (-) TimerEvent: {}
+[31.133134] (-) TimerEvent: {}
+[31.252189] (-) TimerEvent: {}
+[31.356455] (-) TimerEvent: {}
+[31.458071] (-) TimerEvent: {}
+[31.561264] (-) TimerEvent: {}
+[31.697919] (-) TimerEvent: {}
+[31.805381] (-) TimerEvent: {}
+[32.011170] (-) TimerEvent: {}
+[32.116962] (-) TimerEvent: {}
+[32.218890] (-) TimerEvent: {}
+[32.329825] (-) TimerEvent: {}
+[32.434277] (-) TimerEvent: {}
+[32.545839] (-) TimerEvent: {}
+[32.648332] (-) TimerEvent: {}
+[32.749892] (-) TimerEvent: {}
+[32.853287] (-) TimerEvent: {}
+[33.042308] (-) TimerEvent: {}
+[33.152573] (-) TimerEvent: {}
+[33.253612] (-) TimerEvent: {}
+[33.264421] (semantic_mapping) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable semantic_mapping_node\x1b[0m\n'}
+[33.378576] (-) TimerEvent: {}
+[33.480065] (-) TimerEvent: {}
+[33.583005] (-) TimerEvent: {}
+[33.694848] (-) TimerEvent: {}
+[33.796566] (-) TimerEvent: {}
+[33.901183] (-) TimerEvent: {}
+[34.001945] (-) TimerEvent: {}
+[34.103359] (-) TimerEvent: {}
+[34.219540] (-) TimerEvent: {}
+[34.334582] (-) TimerEvent: {}
+[34.451427] (-) TimerEvent: {}
+[34.554847] (-) TimerEvent: {}
+[34.668906] (-) TimerEvent: {}
+[34.792548] (-) TimerEvent: {}
+[34.895545] (-) TimerEvent: {}
+[35.004035] (-) TimerEvent: {}
+[35.106109] (-) TimerEvent: {}
+[35.231421] (-) TimerEvent: {}
+[35.332860] (-) TimerEvent: {}
+[35.447198] (-) TimerEvent: {}
+[35.582275] (-) TimerEvent: {}
+[35.684659] (-) TimerEvent: {}
+[35.786172] (-) TimerEvent: {}
+[35.887909] (-) TimerEvent: {}
+[35.918886] (semantic_mapping) StdoutLine: {'line': b'[100%] Built target semantic_mapping_node\n'}
+[35.947453] (semantic_mapping) CommandEnded: {'returncode': 0}
+[35.952958] (semantic_mapping) JobProgress: {'identifier': 'semantic_mapping', 'progress': 'install'}
+[35.966190] (semantic_mapping) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping'], 'cwd': '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'yutao'), ('SSH_CLIENT', '10.0.2.2 59107 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/yutao'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping'), ('TERM_PROGRAM_VERSION', '1.133.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-8814a504-cb03-41e2-8936-d91b3488a2b2.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\](.venv) \\[\x1b]633;A\x07\\]\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \\[\x1b]633;B\x07\\]\\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/node'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/yutao/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/yutao/miniconda3'), ('COLCON_PREFIX_PATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'yutao'), ('_', '../.venv/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv/bin:/home/yutao/.vscode-server/cli/servers/Stable-a5b500951314efd502d07465bd138dfbd714a960/server/bin/remote-cli:/home/yutao/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/yutao/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/yutao/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-231201c87438cba4.txt'), ('LANG', 'en_US.UTF-8'), ('PYTHONSTARTUP', '/home/yutao/.vscode-server/data/User/workspaceStorage/7d21798f5f84279e0b2671f9e680c4dd/ms-python.python/pythonrc.py'), ('VIRTUAL_ENV_PROMPT', '(.venv)'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-b7ee329800.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/yutao/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('_CONDA_EXE', '/home/yutao/miniconda3/bin/conda'), ('VIRTUAL_ENV', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/.venv'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_mapping'), ('CONDA_EXE', '/home/yutao/miniconda3/bin/conda'), ('SSH_CONNECTION', '10.0.2.2 59107 10.0.2.15 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/src:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/src:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/semantic_segmentation:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation/lib/python3.10/site-packages:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/build/rgbd_replay:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay/lib/python3.10/site-packages:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/src:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_segmentation:/home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/rgbd_replay:/opt/ros/humble')]), 'shell': False}
+[35.980136] (semantic_mapping) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[35.982955] (semantic_mapping) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[35.983728] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/lib/semantic_mapping/semantic_mapping_node\n'}
+[35.984065] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/package_run_dependencies/semantic_mapping\n'}
+[35.986273] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/parent_prefix_path/semantic_mapping\n'}
+[35.986928] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/ament_prefix_path.sh\n'}
+[35.987043] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/ament_prefix_path.dsv\n'}
+[35.987116] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/path.sh\n'}
+[35.987259] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/path.dsv\n'}
+[35.987335] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.bash\n'}
+[35.987397] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.sh\n'}
+[35.987459] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.zsh\n'}
+[35.987519] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.dsv\n'}
+[35.988578] (semantic_mapping) StdoutLine: {'line': b'-- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/package.dsv\n'}
+[35.988681] (-) TimerEvent: {}
+[36.006317] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/packages/semantic_mapping\n'}
+[36.007155] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/cmake/semantic_mappingConfig.cmake\n'}
+[36.008469] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/cmake/semantic_mappingConfig-version.cmake\n'}
+[36.009406] (semantic_mapping) StdoutLine: {'line': b'-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/package.xml\n'}
+[36.018690] (semantic_mapping) CommandEnded: {'returncode': 0}
+[36.089079] (-) TimerEvent: {}
+[36.121664] (semantic_mapping) JobEnded: {'identifier': 'semantic_mapping', 'rc': 0}
+[36.123645] (-) EventReactorShutdown: {}

@@ -1,0 +1,25 @@
+[ 25%] Built target semantic_voxel_map
+[ 50%] Built target parity_driver
+[35m[1mConsolidate compiler generated dependencies of target semantic_mapping_node[0m
+[ 75%] Built target test_semantic_voxel_map
+[ 87%] [32mBuilding CXX object CMakeFiles/semantic_mapping_node.dir/src/semantic_mapping_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable semantic_mapping_node[0m
+[100%] Built target semantic_mapping_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/lib/semantic_mapping/semantic_mapping_node
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/package_run_dependencies/semantic_mapping
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/parent_prefix_path/semantic_mapping
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/path.sh
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/environment/path.dsv
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.bash
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.sh
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.zsh
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/local_setup.dsv
+-- Symlinking: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/package.dsv
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/ament_index/resource_index/packages/semantic_mapping
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/cmake/semantic_mappingConfig.cmake
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/cmake/semantic_mappingConfig-version.cmake
+-- Up-to-date symlink: /home/yutao/Desktop/my_proj/rgbd-semantic-mapping/ros2_ws/install/semantic_mapping/share/semantic_mapping/package.xml
