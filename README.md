@@ -1,8 +1,8 @@
 # Replayable RGB-D Perception and Semantic Mapping System
 
-A modular RGB-D perception and semantic mapping pipeline that replays timestamped RGB-D sequences, projects 2D semantic predictions into 3D, and incrementally fuses them into a persistent world-frame voxel map.
+A modular RGB-D perception and semantic mapping system built with Python, C++17, and ROS 2. The pipeline replays synchronized RGB-D observations, performs Transformer-based semantic segmentation, projects semantic predictions into 3D, and incrementally fuses them into a persistent world-frame voxel map.
 
-The current MVP uses synchronized RGB, depth, and camera poses from the TUM RGB-D dataset, SegFormer for semantic segmentation, and confidence-weighted voxel fusion for multi-frame semantic mapping.
+The system supports both an offline Python reference pipeline and a ROS 2 implementation with Python perception nodes, a C++ semantic-mapping backend, synchronized multi-stream processing, and live PointCloud2 visualization in RViz2.
 
 ---
 
@@ -11,14 +11,14 @@ The current MVP uses synchronized RGB, depth, and camera poses from the TUM RGB-
 <!-- TODO: Replace with your final GIF or preview image -->
 
 <p align="center">
-  <img src="assets/demo.gif" width="900">
+  <img src="assets/ros2_semantic_map.png" width="900">
 </p>
 
-The demo shows the mapping pipeline running incrementally:
+The final ROS 2 pipeline incrementally builds and publishes a semantically labeled 3D voxel map from replayed RGB-D observations.
 
-**RGB input → 2D semantic segmentation → 3D projection → persistent semantic voxel map**
+**RGB-D replay → semantic segmentation → synchronized 3D mapping → semantic voxel fusion → RViz2**
 
-A full-resolution video is available here:
+A video of the offline incremental mapping process is also available:
 
 [▶ Full Incremental Mapping Demo](assets/incremental_mapping_demo.mp4)
 
@@ -42,26 +42,40 @@ The current implementation focuses on **known-pose RGB-D semantic mapping** rath
 
 ---
 
-## Pipeline
+## System Architecture
 
 ```text
-Timestamped RGB / Depth / Pose
-            |
-     Sensor Association
-            |
-    RGB Semantic Segmentation
-        (SegFormer)
-            |
-      RGB-D Backprojection
-            |
-     Camera -> World Transform
-            |
-   Incremental Voxel Map Update
-            |
- Confidence-Weighted Semantic Fusion
-            |
- Persistent 3D Semantic Map
+                TUM RGB-D Dataset
+                       |
+              rgbd_replay_node
+                 (Python / ROS 2)
+                  /     |     \
+                RGB   Depth   Pose
+                 |      |      |
+                 |      |      |
+    semantic_segmentation_node |
+        (Python / ROS 2)       |
+               |               |
+      Labels + Confidence      |
+               |               |
+               +-------+-------+  
+                       |
+             semantic_mapping_node
+                  (C++ / ROS 2)
+                       |
+          Exact-Time Stream Synchronization
+                       |
+          RGB-D Backprojection + SE(3)
+                       |
+          C++ Semantic Voxel Map
+                       |
+          Confidence-Weighted Fusion
+                       |
+             sensor_msgs/PointCloud2
+                       |
+                     RViz2
 ```
+The perception stage remains in Python to leverage the PyTorch and Hugging Face ecosystem, while the persistent semantic mapping core is implemented in C++17 and integrated into a ROS 2 mapping node.
 
 ---
 
@@ -120,6 +134,56 @@ This allows uncertain semantic regions to be identified instead of forcing every
 The mapping pipeline can be run incrementally over a recorded RGB-D sequence.
 
 Intermediate map snapshots can be exported after each update and rendered into a video showing the semantic map growing over time.
+
+### ROS 2 Integration
+
+The offline perception pipeline was extended into a multi-node ROS 2 system.
+
+The replay node publishes synchronized:
+
+- RGB images,
+- depth images,
+- camera poses.
+
+The semantic segmentation node subscribes to RGB frames and publishes:
+
+- per-pixel semantic labels,
+- per-pixel confidence maps.
+
+The C++ mapping node synchronizes RGB, depth, pose, label, and confidence messages using exact timestamps, backprojects valid RGB-D observations into 3D, transforms them into the world frame, and incrementally updates the semantic voxel map.
+
+The fused map is published as `sensor_msgs/PointCloud2` and visualized live in RViz2.
+
+| Topic | Message |
+| --- | --- |
+| `/rgbd_replay/rgb` | `sensor_msgs/Image` |
+| `/rgbd_replay/depth` | `sensor_msgs/Image` |
+| `/rgbd_replay/pose` | `geometry_msgs/PoseStamped` |
+| `/semantic_segmentation/labels` | `sensor_msgs/Image` |
+| `/semantic_segmentation/confidence` | `sensor_msgs/Image` |
+| `/semantic_mapping/map` | `sensor_msgs/PointCloud2` |
+
+### C++ Semantic Mapping Backend
+
+The incremental semantic voxel-map core was first implemented and tested in Python, then ported to C++17.
+
+The C++ implementation preserves the same voxel indexing and confidence-weighted fusion behavior as the Python reference while providing a reusable backend for the ROS 2 mapping node.
+
+Cross-language parity was evaluated over:
+
+- **80 RGB-D frames**
+- **1.16M semantic observations**
+
+The Python and C++ implementations produced equivalent voxel-map outputs across the evaluated sequence.
+
+### Python vs. C++ Mapping Performance
+
+| Implementation | Mapping Runtime |
+| --- | ---: |
+| Python | 5.526 s |
+| C++17 | 2.997 s |
+| Speedup | **1.84×** |
+| Runtime reduction | **45.8%** |
 
 ---
 
@@ -184,37 +248,36 @@ rgbd_dataset_freiburg1_xyz/
 
 ```text
 rgbd-semantic-mapping/
-├── configs/
+├── cpp/
+│   ├── include/
+│   │   └── rgbd_mapping/
+│   │       └── semantic_voxel_map.hpp
+│   ├── src/
+│   │   └── semantic_voxel_map.cpp
+│   ├── tests/
+│   └── CMakeLists.txt
 │
-├── data/
-│   └── raw/
+├── ros2_ws/
+│   └── src/
+│       ├── rgbd_replay/
+│       ├── semantic_segmentation/
+│       └── semantic_mapping/
+│
+├── src/
+│   └── rgbd_mapping/
+│       ├── datasets/
+│       ├── geometry/
+│       ├── mapping/
+│       └── semantics/
 │
 ├── scripts/
 │   ├── incremental_semantic_map_construction.py
 │   └── render_incremental_demo.py
 │
-├── src/
-│   └── rgbd_mapping/
-│       ├── datasets/
-│       │   └── ...
-│       │
-│       ├── geometry/
-│       │   └── ...
-│       │
-│       ├── mapping/
-│       │   ├── semantic_voxel.py
-│       │   └── semantic_voxel_map.py
-│       │
-│       └── semantics/
-│           └── ...
-│
 ├── tests/
-│   └── ...
-│
 ├── assets/
-│   └── ...
-│
 ├── requirements.txt
+├── setup_ros_env.sh
 └── README.md
 ```
 
@@ -265,6 +328,38 @@ The demo renderer also requires FFmpeg support:
 ```bash
 python -m pip install "imageio[ffmpeg]"
 ```
+
+### 4. ROS 2 Environment
+
+The ROS integration was developed and tested with:
+
+- Ubuntu 22.04
+- ROS 2 Humble
+- Python 3
+- C++17
+- CMake / colcon
+
+Source ROS 2 and activate the Python environment:
+
+```bash
+source /opt/ros/humble/setup.bash
+
+source .venv/bin/activate
+
+export PYTHONPATH="$PWD/src:$PYTHONPATH"
+```
+
+Build the ROS 2 workspace:
+
+```bash
+cd ros2_ws
+
+../.venv/bin/colcon build --symlink-install
+
+source install/setup.bash
+```
+
+> **Note:** The ROS 2 Humble `cv_bridge` environment used in this project requires a NumPy 1.x-compatible Python environment. The tested setup uses NumPy 1.26.4.
 
 ---
 
@@ -347,22 +442,29 @@ On headless Linux systems, Open3D may require software EGL rendering.
 
 ---
 
-## Testing
+## Testing and Validation
 
-Run the unit tests from the repository root:
+The mapping implementation was validated at multiple levels.
 
-```bash
-PYTHONPATH=src pytest tests -v
-```
+### Python Unit Tests
 
-The semantic voxel map tests verify that:
+Python tests verify:
 
-- multiple updates accumulate into persistent voxels,
-- batch and incremental updates produce equivalent results,
-- observations within the same voxel are fused correctly,
-- semantic scores are accumulated using model confidence,
-- negative coordinates use floor-based voxel indexing,
-- empty observations do not corrupt the persistent map.
+- persistent voxel accumulation,
+- batch/incremental equivalence,
+- confidence-weighted semantic fusion,
+- correct voxel indexing,
+- empty-update handling.
+
+### C++ Unit Tests
+
+The C++ backend includes corresponding tests for semantic voxel-map behavior.
+
+### Python / C++ Parity
+
+Frozen semantic observations were replayed through both implementations.
+
+Across 80 frames and approximately 1.16 million observations, the Python and C++ implementations produced equivalent voxel topology, semantic labels, observation counts, and fused outputs.
 
 ---
 
@@ -404,6 +506,43 @@ These quantities distinguish two different forms of uncertainty:
 
 ---
 
+## Running the ROS 2 Pipeline
+
+Prepare the environment:
+
+```bash
+source setup_ros_env.sh
+```
+
+Run the RGB-D replay node:
+
+```bash
+ros2 run rgbd_replay rgbd_replay_node
+```
+
+Run the C++ semantic mapping node:
+
+```bash
+ros2 run semantic_mapping semantic_mapping_node
+```
+
+For RViz2 visualization:
+
+```bash
+rviz2
+```
+
+Set:
+```text
+Fixed Frame: map
+PointCloud2 Topic: /semantic_mapping/map
+Color Transformer: RGB8
+```
+
+The published PointCloud2 uses semantic-label colors rather than raw camera RGB colors.
+
+---
+
 ## Current MVP Status
 
 ### Completed
@@ -424,12 +563,14 @@ These quantities distinguish two different forms of uncertainty:
 - [x] Intermediate map snapshot export
 - [x] Incremental semantic mapping video generation
 - [x] Unit tests for incremental voxel accumulation
-
-### Experimental / Optional
-
-- [x] Coarse semantic label remapping
-- [ ] Final uncertainty-to-unknown threshold selection
-- [ ] Lightweight spatial semantic refinement
+- [x] C++17 semantic voxel-map backend
+- [x] Python/C++ mapping parity validation
+- [x] ROS 2 RGB-D dataset replay
+- [x] ROS 2 semantic segmentation node
+- [x] Multi-stream timestamp synchronization
+- [x] ROS 2 C++ semantic mapping node
+- [x] PointCloud2 semantic map publishing
+- [x] RViz2 live semantic-map visualization
 
 ---
 
@@ -477,16 +618,22 @@ The current MVP is designed to run without requiring a GPU. Semantic segmentatio
 | Metric | Result |
 | --- | ---: |
 | Dataset | TUM RGB-D `freiburg1_xyz` |
-| Frames processed | TODO |
-| Pixel stride | TODO |
+<!-- | Frames processed | TODO |
+| Pixel stride | TODO | -->
 | Voxel resolution | 0.02 m |
-| Raw semantic observations | TODO |
+<!-- | Raw semantic observations | TODO |
 | Final map voxels | TODO |
 | Mean observations / voxel | TODO |
 | Mean semantic agreement | TODO |
 | Unknown voxel ratio | TODO |
 | Mean SegFormer inference time | TODO ms/frame |
-| Mean voxel-map update time | TODO ms/frame |
+| Mean voxel-map update time | TODO ms/frame | -->
+| Semantic observations | 1.16M |
+| Python mapping runtime | 5.526 s |
+| C++ mapping runtime | 2.997 s |
+| C++ speedup | **1.84×** |
+
+Semantic segmentation is currently executed on CPU and remains the primary end-to-end runtime bottleneck.
 
 ---
 
@@ -502,18 +649,16 @@ The project emphasizes:
 
 ---
 
-## Roadmap
+## Potential Extensions
 
-Potential extensions include:
+Possible future extensions include:
 
-- ROS2 RGB-D sensor replay,
-- live `sensor_msgs/Image` and `PointCloud2` interfaces,
-- C++ semantic voxel-map backend,
-- online camera pose estimation / SLAM integration,
-- semantic spatial regularization,
+- GPU-accelerated semantic inference,
+- live RGB-D camera input,
+- online pose estimation / SLAM,
 - dynamic-object handling,
-- semantic map queries for downstream planning,
-- GPU-accelerated inference.
+- semantic spatial regularization,
+- downstream semantic-map queries for navigation or planning.
 
 ---
 
@@ -522,6 +667,16 @@ Potential extensions include:
 **Languages**
 
 - Python
+- C++ 17
+
+**Robotics / Middleware**
+
+- ROS 2 Humble
+- rclpy / rclcpp
+- message_filters
+- cv_bridge
+- PointCloud2
+- RViz2
 
 **Perception / ML**
 
@@ -536,8 +691,16 @@ Potential extensions include:
 - rigid-body transformations
 - voxel-based semantic fusion
 
+**Build / Development**
+
+- CMake
+- colcon
+- Linux
+- Git
+
 **Visualization**
 
+- RViz2
 - Open3D
 - MeshLab
 - ImageIO / FFmpeg
@@ -545,6 +708,8 @@ Potential extensions include:
 **Testing**
 
 - PyTest
+- C++ unit tests
+- Python/C++ parity testing
 
 ---
 
